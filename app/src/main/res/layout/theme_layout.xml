@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton"
+            android:layout_column="0"
+            android:background="@color/accent2"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton2"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton3"
+            android:layout_column="0"
+            android:background="@color/accent3"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton4"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton5"
+            android:layout_column="0"
+            android:background="@color/accent4"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton6"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton7"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton8"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton9"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton10"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton11"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageButton12"
+            android:layout_column="0"
+            android:layout_margin="8dp" />
+    </TableRow>
+
+</TableLayout>

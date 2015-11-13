@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ru.echodc.ru.remember.ScrollingAboutActivity"
+    tools:showIn="@layout/activity_scrolling_about">
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="@dimen/text_margin"-->
+    <!--android:text="@string/large_text" />-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
+            card_view:cardCornerRadius="6dp"
+            card_view:cardElevation="4dp"
+            android:id="@+id/cvMax"
+            >
+
+            <RelativeLayout
+                android:id="@+id/relLayoutMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:layout_gravity="center"
+                >
+
+                <LinearLayout
+                    android:id="@+id/relLayoutImgMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgMax"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/i_am" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-50sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/imgTextMax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_img_about"
+                            android:gravity="center"
+                            android:shadowColor="#000"
+                            android:shadowDx="3"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"
+                            android:text="@string/imgTextMax"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/relLayoutImgMax"
+                    android:orientation="horizontal"
+                    android:layout_alignBottom="@+id/relLayoutImgMax"
+                    android:layout_alignBaseline="@+id/relLayoutImgMax"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignWithParentIfMissing="true"
+                    android:layout_toEndOf="@+id/relLayoutImgMax">
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/chbMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:checked="false"/>
+
+                    <ImageView
+                        android:id="@+id/vklinkMax"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/chbMax"
+                        android:src="@drawable/ic_vk" />
+
+                    <ImageView
+                        android:id="@+id/fblinkMax"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentEnd="false"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/vklinkMax"
+                        android:src="@drawable/ic_face"
+                        android:layout_alignParentStart="false" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            card_view:cardCornerRadius="6dp"
+            card_view:cardElevation="4dp"
+            android:id="@+id/cvYarik"
+            android:layout_below="@id/cvMax">
+
+            <RelativeLayout
+                android:id="@+id/relLayoutYarik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"
+                >
+
+                <LinearLayout
+                    android:id="@+id/relLayoutImgYarik"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgYarik"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/i_am" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-50sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/imgTextYarik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_img_about"
+                            android:gravity="center"
+                            android:shadowColor="#000"
+                            android:shadowDx="3"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"
+                            android:text="@string/imgTextYarik"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/relLayoutImgYarik"
+                    android:layout_toRightOf="@+id/relLayoutImgYarik"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignBaseline="@+id/relLayoutImgYarik"
+                    android:layout_alignBottom="@+id/relLayoutImgYarik">
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/chbYarik"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:checked="false"/>
+
+                    <ImageView
+                        android:id="@+id/vklinkYarik"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_toRightOf="@id/chbYarik"
+                        android:src="@drawable/ic_vk" />
+
+                    <ImageView
+                        android:id="@+id/fblinkYarik"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentEnd="false"
+                        android:layout_toRightOf="@+id/vklinkYarik"
+                        android:src="@drawable/ic_face"
+                        android:layout_alignParentStart="false" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

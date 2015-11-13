@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary" tools:targetApi="lollipop">@color/primary</item>
+        <item name="colorPrimaryDark" tools:targetApi="lollipop">@color/primary_dark</item>
+        <item name="colorAccent" tools:targetApi="lollipop">@color/accent</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+
+    <style name="ActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_white_24dp</item>
+    </style>
+
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary" tools:targetApi="lollipop">@color/primary2</item>
+        <item name="colorPrimaryDark" tools:targetApi="lollipop">@color/primary_dark2</item>
+        <item name="colorAccent" tools:targetApi="lollipop">@color/accent2</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+
+    <style name="AppTheme3" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary" tools:targetApi="lollipop">@color/primary3</item>
+        <item name="colorPrimaryDark" tools:targetApi="lollipop">@color/primary_dark3</item>
+        <item name="colorAccent" tools:targetApi="lollipop">@color/accent3</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+
+    <style name="AppTheme4" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary" tools:targetApi="lollipop">@color/primary4</item>
+        <item name="colorPrimaryDark" tools:targetApi="lollipop">@color/primary_dark4</item>
+        <item name="colorAccent" tools:targetApi="lollipop">@color/accent4</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

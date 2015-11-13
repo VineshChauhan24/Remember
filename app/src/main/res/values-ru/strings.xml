@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Вспомни</string>
+
+    <string name="action_settings">Настройки</string>
+
+    <!--Splash-->
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="splash_screen">Заставка</string>
+
+    <string name="splash_link">echodc.ru/android</string>
+    <string name="do_not_show_splash">Не показывать заставку</string>
+
+    <!--Activity-->
+    <string name="current_task">Текущие</string>
+    <string name="done_task">Выполненные</string>
+
+    <!-- Dialogs-->
+    <string name="dialog_title">Добавить напоминание</string>
+    <string name="dialog_editing_title">Редактирование</string>
+    <string name="dialog_task_title">Название</string>
+    <string name="dialog_task_date">Дата</string>
+    <string name="dialog_task_time">Время</string>
+    <string name="dialog_OK">OK</string>
+    <string name="dialog_Cancel">Отменить</string>
+    <string name="dialog_error_empty_title">Введите название напоминания</string>
+    <string name="dialog_removing_message">Вы уверены, что хотите удалить?</string>
+    <string name="dialog_send_mail_title">Отправить E-mail</string>
+    <string name="dialog_mail_title">Тема письма</string>
+    <string name="dialog_mail_message">Сообщение</string>
+    <string name="dialog_error_empty_mail_title">Поле не может быть пустым.</string>
+
+    <!-- SnackBar-->
+    <string name="removed">Удалено</string>
+
+    <!-- Separators-->
+    <string name="separator_overdue">Просроченные</string>
+    <string name="separator_today">Сегодня</string>
+    <string name="separator_tomorrow">Завтра</string>
+    <string name="separator_future">В ближайшем будущем</string>
+    <string name="separator_repeat">Повторяемые</string>
+
+    <!-- Toasts-->
+    <string name="task_added">Напоминание добавлено.</string>
+    <string name="task_adding_cancel">Отменено.</string>
+    <string name="moved_to_current">Перемещено в "Текущие"</string>
+    <string name="moved_to_done">Перемещено в "Выполненные"</string>
+
+    <!-- Days of week-->
+    <string name="sunday">Вс</string>
+    <string name="monday">Пн</string>
+    <string name="tuesday">Вт</string>
+    <string name="wednesday">Ср</string>
+    <string name="thursday">Чт</string>
+    <string name="friday">Пт</string>
+    <string name="saturday">Сб</string>
+    <string name="repeat">Повтор</string>
+
+    <!-- Spinner priority-->
+    <string-array name="priority">
+        <item>Низкий приоритет</item>
+        <item>Нормальный приоритет</item>
+        <item>Высокий приоритет</item>
+    </string-array>
+
+    <!-- About-->
+    <string name="authors">Авторы</string>
+    <string name="max">Макс Багрянцев</string>
+    <string name="yarik">Yarik</string>
+    <string name="imgTextMax">Макс</string>
+    <string name="imgTextYarik">Yarik</string>
+    <string name="snackbar_mail_sending">Ваше письмо отправлено.</string>
+    <string name="send_mail">Отправка письма...</string>
+    <string name="email_message">Текст сообщения можно написать в этом поле</string>
+    <string name="subject">Тема</string>
+    <string name="toast_error_email_client_not_installed">Программы для работы с Email не найдены.</string>
+    <string name="select_the_recipient">Выберите получателя</string>
+    <string name="dialog_mail_recipient">Получатель</string>
+    <string name="select_email_client">Выберите email клиент: </string>
+
+
+</resources>
