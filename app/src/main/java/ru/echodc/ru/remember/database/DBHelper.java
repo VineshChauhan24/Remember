@@ -233,7 +233,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return updateManager;
     }
 
-
     //    Добавляем в базу данных запрос на удаление задач
     public void removeTask(long timeStamp) {
         getWritableDatabase().delete(TASK_TABLE, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});

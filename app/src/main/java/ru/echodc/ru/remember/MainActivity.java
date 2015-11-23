@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -17,6 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import ru.echodc.ru.remember.adapter.TabAdapter;
 import ru.echodc.ru.remember.alarm.AlarmHelper;
@@ -41,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     SearchView searchView;
 
     public DBHelper dbHelper;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -67,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
         runSplash();
 
         setUI();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     //    Чтобы приложение не вылетало сразу, после нажатия кнопки Назад
@@ -88,9 +101,8 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     }
 
     @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem splashItem = menu.findItem(R.id.action_splash);
         splashItem.setChecked(mPreferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE));
@@ -113,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
                 mPreferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
                 return true;
             case R.id.action_authors:
-                intent = new Intent(this, ScrollingAboutActivity.class);
+                intent = new Intent(getApplicationContext(), ScrollingAboutActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -249,5 +261,45 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     public void onTaskEdited(ModelTask updateTask) {
         mCurrentTaskFragment.updateTask(updateTask);
         dbHelper.update().task(updateTask);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ru.echodc.ru.remember/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ru.echodc.ru.remember/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }
