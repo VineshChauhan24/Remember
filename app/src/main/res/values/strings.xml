@@ -5,7 +5,7 @@
 
     <!--Splash-->
     <string name="splash_screen">Splash screen</string>
-    <string name="splash_title">Remember</string>
+    <string name="splash_title" translatable="false">Remember</string>
     <string name="splash_link">echodc.ru/android</string>
 
     <!-- Menu-->
@@ -50,7 +50,7 @@
     <string name="moved_to_done">Moved in the done</string>
 
     <!-- Banner-->
-    <string name="banner_ad_unit_id">ca-app-pub-8191763105477673/2827062342</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8191763105477673/2827062342</string>
 
     <!-- Days of week-->
     <string name="sunday">Su</string>
@@ -74,18 +74,18 @@
     <!-- About-->
     <string name="authors">Authors</string>
     <string name="max">Max Bagryantsev</string>
-    <string name="max_email">bagryanetz@gmail.com</string>
-    <string name="max_vk_link">https://vk.com/ciklodol</string>
-    <string name="max_facebook_link">https://www.facebook.com/bagryanetzz</string>
+    <string name="max_email" translatable="false">bagryanetz@gmail.com</string>
+    <string name="max_vk_link" translatable="false">https://vk.com/ciklodol</string>
+    <string name="max_facebook_link" translatable="false">https://www.facebook.com/bagryanetzz</string>
     <string name="imgTextMax">Max</string>
 
     <string name="yarik">Yarik</string>
-    <string name="yarik_email">***</string>
-    <string name="yarik_vk_link">***</string>
-    <string name="yarik_facebook_link">***</string>
+    <string name="yarik_email" translatable="false">***</string>
+    <string name="yarik_vk_link" translatable="false">***</string>
+    <string name="yarik_facebook_link" translatable="false">***</string>
     <string name="imgTextYarik">Yarik</string>
 
-    <string name="large_text">
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."

@@ -4,7 +4,6 @@
     <string name="action_settings">Настройки</string>
 
     <!--Splash-->
-    <string name="hello_blank_fragment">Пустой фрагмент</string>
     <string name="splash_screen">Заставка</string>
 
     <string name="splash_link">echodc.ru/android</string>
@@ -69,13 +68,14 @@
     <string name="imgTextMax">Макс</string>
     <string name="imgTextYarik">Yarik</string>
     <string name="snackbar_mail_sending">Ваше письмо отправлено.</string>
-    <string name="send_mail">Отправка письма...</string>
+    <string name="send_mail">Отправка письма…</string>
     <string name="email_message">Текст сообщения можно написать в этом поле</string>
     <string name="subject">Тема</string>
     <string name="toast_error_email_client_not_installed">Программы для работы с Email не найдены.</string>
     <string name="select_the_recipient">Выберите получателя</string>
     <string name="dialog_mail_recipient">Получатель</string>
     <string name="select_email_client">Выберите email клиент: </string>
+    <string name="new_time">Время</string>
 
 
 </resources>
