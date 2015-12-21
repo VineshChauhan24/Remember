@@ -28,33 +28,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TASK_STATUS_COLUMN = "task_status";
     public static final String TASK_TIME_STAMP_COLUMN = "task_time_stamp";
 
-    // TODO: 25.11.2015
     //    Новые колонки для данных дней недели
     public static final String TASK_DAY_COLUMN = "task_selected_day";
-    public static final String TASK_HOUR_COLUMN = " task_hour";
-    public static final String TASK_MINUTE_COLUMN = "task_minute";
     public static final String TASK_TIME_DAY_COLUMN = "task_time";
 
-    // TODO: 25.11.2015
-//    public static final String ALTER_TABLE_ID_DAY_COLUMN = "ALTER TABLE task_table ADD COLUMN day_id INTEGER ";
-//    public static final String TASK_TABLE_DAY_NAME = "task_day_table";
-//    public static final String ALTER_TABLE_TASK_DAY_COLUMN = "ALTER TABLE task_table ADD COLUMN task_selected_day TEXT AFTER  task_time_stamp ";
-//    public static final String ALTER_TABLE_TASK_HOUR_COLUMN = "ALTER TABLE task_table ADD COLUMN task_hour INTEGER AFTER  task_selected_day ";
-//    public static final String ALTER_TABLE_TASK_MINUTE_COLUMN = "ALTER TABLE task_table ADD COLUMN task_minute INTEGER AFTER  task_hour ";
-//    public static final String ALTER_TABLE_TASK_TIME_DAY_COLUMN = "ALTER TABLE task_table ADD COLUMN task_time LONG AFTER  task_minute ";
-
-    // TODO: 12.11.15
-//    Скрипт создания таблицы дней недели
-//    public static final String TASK_TABLE_DAY_CREATE_SCRIPT = "CREATE TABLE "
-//            + TASK_TABLE_DAY_NAME + " (" + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + TASK_DAY_COLUMN + " TEXT DEFAULT NULL, "
-//            + TASK_HOUR_COLUMN + " INTEGER, "
-//            + TASK_MINUTE_COLUMN + " INTEGER, "
-//            + TASK_TIME_DAY_COLUMN + " LONG); ";
-
-
     //    Константа для создания таблицы
-    // TODO: 26.11.2015 константа из первой версии базы
+    // константа из первой версии базы
 //    private static final String TASKS_TABLE_CREATE_SCRIPT = "CREATE TABLE "
 //            + TASK_TABLE + " (" + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 //            + TASK_TITLE_COLUMN + " TEXT NOT NULL, "
@@ -62,12 +41,6 @@ public class DBHelper extends SQLiteOpenHelper {
 //            + TASK_PRIORITY_COLUMN + " INTEGER, "
 //            + TASK_STATUS_COLUMN + " INTEGER, "
 //            + TASK_TIME_STAMP_COLUMN + " LONG); ";
-
-
-    //    Константы для выборки значений
-    public static final String SELECTION_STATUS = DBHelper.TASK_STATUS_COLUMN + " = ?";
-    public static final String SELECTION_TIME_STAMP = TASK_TIME_STAMP_COLUMN + " = ?";
-    public static final String SELECTION_LIKE_TITLE = TASK_TITLE_COLUMN + " LIKE ?";
 
     //    Версия нового запроса, после обновления версии базы данных:
     private static final String TASKS_NEW_TABLE_CREATE_SCRIPT = "CREATE TABLE "
@@ -78,15 +51,17 @@ public class DBHelper extends SQLiteOpenHelper {
             + TASK_PRIORITY_COLUMN + " INTEGER, "
             + TASK_STATUS_COLUMN + " INTEGER, "
             + TASK_TIME_STAMP_COLUMN + " LONG, "
-            + TASK_DAY_COLUMN + " TEXT NULL, "
-            + TASK_HOUR_COLUMN + " INTEGER, "
-            + TASK_MINUTE_COLUMN + " INTEGER, "
+            + TASK_DAY_COLUMN + " TEXT, "
             + TASK_TIME_DAY_COLUMN + " LONG); ";
+
+    //    Константы для выборки значений
+    public static final String SELECTION_STATUS = DBHelper.TASK_STATUS_COLUMN + " = ?";
+    public static final String SELECTION_TIME_STAMP = TASK_TIME_STAMP_COLUMN + " = ?";
+    public static final String SELECTION_LIKE_TITLE = TASK_TITLE_COLUMN + " LIKE ?";
 
     //    для получения доступа из фрагментов
     private DBQueryManager queryManager;
     private DBUpdateManager updateManager;
-
 
     //    Конструктор Базы данных
     public DBHelper(Context context) {
@@ -130,77 +105,35 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //                Созадем временную таблицу
                 db.execSQL(TASKS_TEMP_TABLE_CREATE_SCRIPT);
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Временная таблица создана");
 
 //                Вставляем данные во временную таблицу из таблицы task_table
                 db.execSQL("INSERT INTO temp_task_table (task_title, task_date, task_priority, task_status, task_time_stamp)" +
                         " SELECT task_title, task_date, task_priority, task_status, task_time_stamp FROM task_table ");
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Данные вставлены во временную таблицу");
 
 //                Удаляем таблицу task_table если она существует
                 db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Таблица изначальная УДАЛЕНА");
 
-//                Создаем ее заново
-//                db.execSQL(TASKS_TABLE_CREATE_SCRIPT);
                 onCreate(db);//создаем пустую таблицу для новой версии базы
-//                --------------------------------------------------------------------------------------------------------------------------------------------------
-//                Создаем новую расширенную таблицу с новыми колонами
-//                db.execSQL(TASKS_NEW_TABLE_CREATE_SCRIPT);
-//               ---------------------------------------------------------------------------------------------------------------------------------------------------
-//                Добавляем колонку для идентификации дней недели из таблицы task_day_table
-//                db.execSQL(ALTER_TABLE_ID_DAY_COLUMN);
-//                Добавляем 4 столбика в таблицу task_table
-//                db.execSQL(ALTER_TABLE_TASK_DAY_COLUMN);
-//                db.execSQL(ALTER_TABLE_TASK_HOUR_COLUMN);
-//                db.execSQL(ALTER_TABLE_TASK_MINUTE_COLUMN);
-//                db.execSQL(ALTER_TABLE_TASK_TIME_DAY_COLUMN);
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Пустая таблица создана");
 
 //                Вставляем данные пользователя из временной таблицы в новую таблицу task_table
                 db.execSQL("INSERT INTO task_table" +
                         " (task_title, task_date, task_priority, task_status, task_time_stamp)" +
                         " SELECT task_title, task_date, task_priority, task_status, task_time_stamp FROM temp_task_table ");
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Данные вставлены из временной таблицы в новую");
 
 //                Удаляем временную талицу
                 db.execSQL("DROP TABLE IF EXISTS temp_task_table ");
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Временная таблица УДАЛЕНА");
 
-//                Обновим записи в новой таблице task_table
-//                db.execSQL("UPDATE task_table SET task_selected_day=null, task_hour=0, task_minute=0, task_time=0 ");
-
-//                Создаем таблицу идентификации дней недели task_day_table
-//                db.execSQL(TASK_TABLE_DAY_CREATE_SCRIPT);
                 db.setTransactionSuccessful();
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>                                                                           Транзакиця прошла успешно");
+                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Транзакиця прошла успешно");
             } finally {
                 db.endTransaction();
             }
-
-//            db.beginTransaction();
-//            try {
-//                String TASKS_TEMP_TABLE_CREATE_SCRIPT = "CREATE TABLE "
-//                        + "temp_task_table "
-//                        + " (" + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                        + TASK_TITLE_COLUMN + " TEXT NOT NULL, "
-//                        + TASK_DATE_COLUMN + " LONG, "
-//                        + TASK_PRIORITY_COLUMN + " INTEGER, "
-//                        + TASK_STATUS_COLUMN + " INTEGER, "
-//                        + TASK_TIME_STAMP_COLUMN + " LONG, "
-//                        + TASK_DAY_COLUMN + " TEXT DEFAULT NULL, "
-//                        + TASK_HOUR_COLUMN + " INTEGER, "
-//                        + TASK_MINUTE_COLUMN + " INTEGER, "
-//                        + TASK_TIME_DAY_COLUMN + " LONG); ";
-//
-//                db.execSQL(TASKS_TEMP_TABLE_CREATE_SCRIPT);
-//
-//                db.execSQL("INSERT INTO temp_task_table (task_title, task_date, task_priority, task_status, task_time_stamp) SELECT task_title, task_date, task_priority, task_status, task_time_stamp FROM task_table ");
-//                db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
-//
-//                db.execSQL(TASKS_NEW_TABLE_CREATE_SCRIPT);
-//
-//                db.execSQL("INSERT INTO task_table (task_title, task_date, task_priority, task_status, task_time_stamp, task_selected_day, task_hour, task_minute, task_time) SELECT task_title, task_date, task_priority, task_status, task_time_stamp, task_selected_day, task_hour, task_minute, task_time FROM temp_task_table ");
-//                db.execSQL("DROP TABLE IF EXISTS temp_task_table ");
-//
-//                db.setTransactionSuccessful();
-//            } finally {
-//                db.endTransaction();
-//            }
         }
     }
 
@@ -215,12 +148,8 @@ public class DBHelper extends SQLiteOpenHelper {
         newValues.put(TASK_PRIORITY_COLUMN, task.getPriority());
         newValues.put(TASK_TIME_STAMP_COLUMN, task.getTimeStamp());
 
-        // TODO: 26.11.2015
 //        Запишет [0,0,0,0,0,0,0] в ячейку дней
 //        newValues.put(TASK_DAY_COLUMN, Arrays.toString(task.getDay()));
-//        **********************************************************************************
-        newValues.put(TASK_HOUR_COLUMN, task.getHour());
-        newValues.put(TASK_MINUTE_COLUMN, task.getMinute());
 
         String dayTemp = "";
 
@@ -231,7 +160,7 @@ public class DBHelper extends SQLiteOpenHelper {
         newValues.put(TASK_DAY_COLUMN, dayTemp);
         newValues.put(TASK_TIME_DAY_COLUMN, task.getOnlyTime());
 
-//        Втавляем данных в таблицу
+//        Вставляем данных в таблицу
         getWritableDatabase().insert(TASK_TABLE, null, newValues);
     }
 
@@ -248,5 +177,4 @@ public class DBHelper extends SQLiteOpenHelper {
     public void removeTask(long timeStamp) {
         getWritableDatabase().delete(TASK_TABLE, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
     }
-
 }

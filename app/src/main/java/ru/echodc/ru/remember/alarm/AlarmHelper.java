@@ -123,8 +123,8 @@ public class AlarmHelper {
     public void forDay(int day, ModelTask task) {
         c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_WEEK, day);
-        c.set(Calendar.HOUR_OF_DAY, task.getHour());
-        c.set(Calendar.MINUTE, task.getMinute());
+//        c.set(Calendar.HOUR_OF_DAY, task.getHour());
+//        c.set(Calendar.MINUTE, task.getMinute());
         c.set(Calendar.SECOND, 0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 c.getTimeInMillis(), 24 * 60 * 60 * 1000, pendingIntent);

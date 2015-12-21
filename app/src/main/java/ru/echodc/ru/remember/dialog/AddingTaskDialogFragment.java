@@ -121,6 +121,8 @@ public class AddingTaskDialogFragment extends DialogFragment {
                     tblLayout.setVisibility(View.VISIBLE);
                     tilDate.setVisibility(View.GONE);
                     tilTime.setVisibility(View.GONE);
+                    etDate.setText(null);
+                    etTime.setText(null);
 
 //        Перебор вариантов для отметки нужных дней
                     OnCheckedChangeListener ochl = new OnCheckedChangeListener() {
@@ -206,6 +208,14 @@ public class AddingTaskDialogFragment extends DialogFragment {
                     sa.setOnCheckedChangeListener(ochl);
 
                 } else {
+                    su.setChecked(false);
+                    mo.setChecked(false);
+                    tu.setChecked(false);
+                    we.setChecked(false);
+                    th.setChecked(false);
+                    fr.setChecked(false);
+                    sa.setChecked(false);
+                    etTimeWeekDays.setText(null);
                     tblLayout.setVisibility(View.GONE);
                     tilDate.setVisibility(View.VISIBLE);
                     tilTime.setVisibility(View.VISIBLE);
@@ -408,7 +418,7 @@ public class AddingTaskDialogFragment extends DialogFragment {
 
 //                **********************************************************************************
 //                Если длина даты или времени не равна 0, то устанавливаем в задачу новую дату из календаря
-                if (etDate.length() != 0 && etTime.length() != 0) {
+                if (etDate.length() != 0 || etTime.length() != 0) {
                     task.setDate(calendar.getTimeInMillis());
 
 //                    Создадим новый объект AlarmHelper

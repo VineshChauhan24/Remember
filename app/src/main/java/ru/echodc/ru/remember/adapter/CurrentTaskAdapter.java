@@ -79,6 +79,7 @@ public class CurrentTaskAdapter extends TaskAdapter {
 //            Установим дни недели из базы
 //            **************************************************************************************
             taskViewHolder.day.setText(Utils.getDayName(context, task.getDay()));
+
 //            **************************************************************************************
 //            Установим заголовок через обращение к taskViewHolder
             taskViewHolder.title.setText(task.getTitle());
@@ -268,4 +269,5 @@ public class CurrentTaskAdapter extends TaskAdapter {
             return TYPE_SEPARATOR;
         }
     }
+
 }

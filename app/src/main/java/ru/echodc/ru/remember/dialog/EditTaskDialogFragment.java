@@ -45,8 +45,8 @@ public class EditTaskDialogFragment extends DialogFragment {
         args.putInt("priority", task.getPriority());
         args.putLong("time_stamp", task.getTimeStamp());
 //        *****************************************
-        args.putInt("hour", task.getHour());
-        args.putInt("minute", task.getMinute());
+//        args.putInt("hour", task.getHour());
+//        args.putInt("minute", task.getMinute());
 
         String dayArray = "";
         for (int i = 0; i < task.getDay().length; i++) {
@@ -101,7 +101,8 @@ public class EditTaskDialogFragment extends DialogFragment {
         }
 //        String day = args.getString("day");
 
-        final ModelTask task = new ModelTask(title, date, priority, 0, timeStamp, day, hour, minute, onlyTime);
+//        final ModelTask task = new ModelTask(title, date, priority, 0, timeStamp, day, hour, minute, onlyTime);
+        final ModelTask task = new ModelTask(title, date, priority, 0, timeStamp, day, onlyTime);
 
 
         //        Создаем экземпляр от AlertDialog.Builder

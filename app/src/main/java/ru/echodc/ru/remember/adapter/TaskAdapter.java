@@ -21,6 +21,8 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public Context context;
 
+
+
     List<Item> items;
 
     TaskFragment taskFragment;

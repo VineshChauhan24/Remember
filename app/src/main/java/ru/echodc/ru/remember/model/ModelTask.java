@@ -24,47 +24,36 @@ public class ModelTask implements Item {
     private long timeStamp;
     private int dateStatus;
 
-    //************************************************************************
     //    Новые поля для определения дней и времени
     private int[] day;
-
-    private int hour;
-    private int minute;
     private long onlyTime;
-//************************************************************************
-
 
     //    Пустой конструктор
     public ModelTask() {
 //        По умолчанию int = 0, присвоим -1, чтобы он не создавался с нулевым значением
         this.status = -1;
         this.timeStamp = new Date().getTime();//создаем новую дату и забираем из нее время
-        this.day = new int[7];
+        this.day = new int[7];//
     }
 
     //    Конструктор с параметрами
-    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, int hour, int minute) {
+    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day) {
         this.title = title;
         this.date = date;
         this.priority = priority;
         this.status = status;
         this.timeStamp = timeStamp;
-//        ******************************************************************************************
         this.day = day;
-        this.hour = hour;
-        this.minute = minute;
-//        ******************************************************************************************
     }
 
-    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, int hour, int minute, long timeDay) {
+//    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, int hour, int minute, long timeDay) {
+    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, long timeDay) {
         this.title = title;
         this.date = date;
         this.priority = priority;
         this.status = status;
         this.timeStamp = timeStamp;
         this.day = day;
-        this.hour = hour;
-        this.minute = minute;
         this.onlyTime = timeDay;
     }
 
@@ -160,21 +149,6 @@ public class ModelTask implements Item {
         this.day[position] = day;
     }
 
-    public int getMinute() {
-        return minute;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
-
-    public int getHour() {
-        return hour;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
 
     public long getOnlyTime() {
         return onlyTime;

@@ -125,8 +125,12 @@ public class CurrentTaskFragment extends TaskFragment {
 //                    Прерывание цикла при нахождении элемента с большей датой
                     break;
                 }
+                // TODO: 21.12.2015  
+            } else {
+                position = -1;
             }
         }
+
 
 //        Определяем варианты создания разделителей
 
