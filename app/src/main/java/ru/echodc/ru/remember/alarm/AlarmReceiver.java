@@ -17,7 +17,7 @@ import ru.echodc.ru.remember.R;
  * Приемник широковещательных событий
  */
 public class AlarmReceiver extends BroadcastReceiver {
-    int[] day;
+//    int[] day;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,6 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         int color = intent.getIntExtra("color", 0);//цвет приоритета задачи, по умолчанию 0
 //        ******************************************************************************************
         long onlyTime = intent.getLongExtra("onlyTime", 0);
+        String dayName = intent.getStringExtra("day"); // название дня недели
 
 
 //        String dayString = intent.getStringExtra("day");//день недели
@@ -63,13 +64,22 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 //        Создаем строитель уведомлений
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        // TODO: 21.01.2016
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC);
         builder.setContentTitle(res.getString(R.string.app_name));//используем название приложения
         builder.setContentText(title);//В тексте ипользуем, пришедший заголовок
+        // TODO: 21.01.2016
+        builder.setTicker(dayName);
+//        ********************************
         builder.setColor(context.getResources().getColor(color));//цвет иконки задачи
         builder.setSmallIcon(R.drawable.ic_check_white_48dp);
 
 //        Указываем что будет использованно от системы по умолчанию
-        builder.setDefaults(Notification.DEFAULT_ALL);
+//        builder.setDefaults(Notification.DEFAULT_ALL);
+        // TODO: 21.01.2016  
+        builder.setDefaults(Notification.DEFAULT_SOUND |
+                Notification.DEFAULT_VIBRATE);
+
 //        В Контент отдаем pendingIntent
         if (pendingIntent != null) {
             builder.setContentIntent(pendingIntent);

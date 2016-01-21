@@ -28,6 +28,7 @@ public class ModelTask implements Item {
     private int[] day;
     private long onlyTime;
 
+
     //    Пустой конструктор
     public ModelTask() {
 //        По умолчанию int = 0, присвоим -1, чтобы он не создавался с нулевым значением
