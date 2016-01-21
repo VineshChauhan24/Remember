@@ -60,48 +60,4 @@ public class Utils {
         }
         return dayName;
     }
-
-    // TODO: 18.12.2015
-//    public static ArrayList<String> getDayName(TextView tvDayName, int dayNameOfCalendar) {
-//        ArrayList<String> dayName = new ArrayList<>();
-//        dayName.add(R.string.sunday + ". ");
-//        dayName.add(R.string.monday + ". ");
-//        dayName.add(R.string.tuesday + ". ");
-//        dayName.add(R.string.wednesday + ". ");
-//        dayName.add(R.string.thursday + ". ");
-//        dayName.add(R.string.friday + ". ");
-//        dayName.add(R.string.saturday + ". ");
-//
-//        switch (dayNameOfCalendar) {
-//            case Calendar.SUNDAY:
-//                tvDayName.setText(dayName.get(0));
-//                break;
-//            case Calendar.MONDAY:
-//                tvDayName.setText(dayName.get(1));
-//                break;
-//            case Calendar.TUESDAY:
-//                tvDayName.setText(dayName.get(2));
-//                break;
-//            case Calendar.WEDNESDAY:
-//                tvDayName.setText(dayName.get(3));
-//                break;
-//            case Calendar.THURSDAY:
-//                tvDayName.setText(dayName.get(4));
-//                break;
-//            case Calendar.FRIDAY:
-//                tvDayName.setText(dayName.get(5));
-//                break;
-//            case Calendar.SATURDAY:
-//                tvDayName.setText(dayName.get(6));
-//                break;
-//
-//        }
-//
-////        if (dayNameOfCalendar == Calendar.SUNDAY) {
-////            tvDayName.setText(dayName.get(0);
-////        }else if (dayNameOfCalendar == Calendar.SUNDAY){
-////
-////        }
-//        return dayName;
-//    }
 }

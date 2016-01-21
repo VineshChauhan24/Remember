@@ -46,7 +46,21 @@ public class ModelTask implements Item {
         this.day = day;
     }
 
-//    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, int hour, int minute, long timeDay) {
+    //Конструктор для повторения напоминаний
+    public ModelTask(String title, int priority, int status, int[] day, long onlyTime) {
+        this.title = title;
+        this.priority = priority;
+        this.status = status;
+        this.day = day;
+        this.onlyTime = onlyTime;
+    }
+//    Конструктор для получения только времени
+    public ModelTask(int[] day, long onlyTime) {
+        this.day = day;
+        this.onlyTime = onlyTime;
+    }
+
+    //    public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, int hour, int minute, long timeDay) {
     public ModelTask(String title, long date, int priority, int status, long timeStamp, int[] day, long timeDay) {
         this.title = title;
         this.date = date;

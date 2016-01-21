@@ -99,4 +99,32 @@ public class DBQueryManager {
         c.close();//закрываем подключение к базе
         return tasks;
     }
+
+    // TODO: 14.01.2016
+    //    Возвращаем время для повторения
+    public ModelTask getRepeatTime(long timeDay) {
+        ModelTask modelTask = null;
+        Cursor cursor = database.query(DBHelper.TASK_TABLE, null, DBHelper.SELECTION_TIME_FOR_DAY,
+                new String[]{Long.toString(timeDay)}, null, null, null);
+
+        if (cursor.moveToFirst()) {
+//            String title = cursor.getString(cursor.getColumnIndex(DBHelper.TASK_TITLE_COLUMN));
+//            int priority = cursor.getInt(cursor.getColumnIndex(DBHelper.TASK_PRIORITY_COLUMN));
+//            int status = cursor.getInt(cursor.getColumnIndex(DBHelper.TASK_STATUS_COLUMN));
+            String dayString = cursor.getString(cursor.getColumnIndex(DBHelper.TASK_DAY_COLUMN));
+            int[] day = new int[7];
+            for (int i = 0; i < dayString.length(); i++) {
+                day[i] = Integer.parseInt(String.valueOf(dayString.charAt(i)));
+                System.out.println(Integer.parseInt(String.valueOf(dayString.charAt(i))));
+            }
+            timeDay = cursor.getLong(cursor.getColumnIndex(DBHelper.TASK_TIME_DAY_COLUMN));
+//            modelTask = new ModelTask(title, priority, status, day, timeDay);
+            modelTask = new ModelTask(day, timeDay);
+        }
+//        Закрываем подключение к базе
+        cursor.close();
+
+//        Возвращаем заполненный modelTask
+        return modelTask;
+    }
 }

@@ -58,6 +58,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SELECTION_STATUS = DBHelper.TASK_STATUS_COLUMN + " = ?";
     public static final String SELECTION_TIME_STAMP = TASK_TIME_STAMP_COLUMN + " = ?";
     public static final String SELECTION_LIKE_TITLE = TASK_TITLE_COLUMN + " LIKE ?";
+    // TODO: 14.01.2016  
+    public static final String SELECTION_TIME_FOR_DAY = TASK_TIME_DAY_COLUMN + " LIKE ?";
 
     //    для получения доступа из фрагментов
     private DBQueryManager queryManager;

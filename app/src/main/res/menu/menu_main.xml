@@ -11,5 +11,6 @@
         android:id="@+id/action_authors"
         android:checkable="false"
         android:title="@string/authors"
-        app:showAsAction="never"/>
+        app:showAsAction="never">
+    </item>
 </menu>

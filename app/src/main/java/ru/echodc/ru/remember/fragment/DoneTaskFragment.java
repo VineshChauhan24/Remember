@@ -19,7 +19,6 @@ import ru.echodc.ru.remember.model.ModelTask;
 
 public class DoneTaskFragment extends TaskFragment {
 
-
     public DoneTaskFragment() {
         // Required empty public constructor
     }
@@ -36,7 +35,8 @@ public class DoneTaskFragment extends TaskFragment {
         try {
             onTaskRestoreListener = (OnTaskRestoreListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnTaskRestoreListener");
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTaskRestoreListener");
         }
 
     }
@@ -139,7 +139,7 @@ public class DoneTaskFragment extends TaskFragment {
 //        Устанавливаем оповещение
         if (task.getDate() != 0) {
             alarmHelper.setAlarm(task);
-        } else if (task.getOnlyTime() !=0){
+        } else if (task.getOnlyTime() != 0) {
             alarmHelper.setAlarm(task);
         }
 //        Вызовем слушателя на восстановление задачи

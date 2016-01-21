@@ -18,8 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import ru.echodc.ru.remember.adapter.TabAdapter;
 import ru.echodc.ru.remember.alarm.AlarmHelper;
 import ru.echodc.ru.remember.database.DBHelper;
@@ -27,6 +25,7 @@ import ru.echodc.ru.remember.dialog.AddingTaskDialogFragment;
 import ru.echodc.ru.remember.dialog.EditTaskDialogFragment;
 import ru.echodc.ru.remember.fragment.CurrentTaskFragment;
 import ru.echodc.ru.remember.fragment.DoneTaskFragment;
+
 import ru.echodc.ru.remember.fragment.SplashFragment;
 import ru.echodc.ru.remember.fragment.TaskFragment;
 import ru.echodc.ru.remember.model.ModelTask;
@@ -36,18 +35,12 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 
     PreferenceHelper mPreferenceHelper;
     TabAdapter tabAdapter;
-
     TaskFragment mCurrentTaskFragment;
     TaskFragment mDoneTaskFragment;
-
+    boolean showScreen = false;
     SearchView searchView;
 
     public DBHelper dbHelper;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
 
     @Override
@@ -71,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 //        Инициализация Фрагмент менеджера
         mFragmentManager = getFragmentManager();
 
+
         runSplash();
+
 
         setUI();
     }
@@ -85,7 +80,10 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     @Override
     protected void onResume() {
         super.onResume();
+
         MyApplication.activityResumed();
+
+
     }
 
     @Override
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem splashItem = menu.findItem(R.id.action_splash);
@@ -119,19 +118,25 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
                 mPreferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
                 return true;
             case R.id.action_authors:
-                intent = new Intent(getApplicationContext(), ScrollingAboutActivity.class);
-                startActivity(intent);
-                break;
-        }
 
-        return super.onOptionsItemSelected(item);
+                intent = new Intent(this, ScrollingAboutActivity.class);
+                mPreferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, true);
+                startActivity(intent);
+
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
     }
 
+
     public void runSplash() {
+
 //          Проверяем сначала состояние флага в объекте mPreferenceHelper
         if (!mPreferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE)) {
             SplashFragment splashFragment = new SplashFragment();
-
+            System.out.println("В СМЫСЛЕ?");
 //            Загружаем фрагмент со Сплэшскрином
             mFragmentManager.beginTransaction()
                     .replace(R.id.content_frame, splashFragment)
@@ -256,6 +261,4 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
         mCurrentTaskFragment.updateTask(updateTask);
         dbHelper.update().task(updateTask);
     }
-
-
 }

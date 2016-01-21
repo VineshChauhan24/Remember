@@ -23,6 +23,7 @@ import ru.echodc.ru.remember.model.ModelTask;
 
 public class CurrentTaskFragment extends TaskFragment {
 
+
     public CurrentTaskFragment() {
 
     }
@@ -108,6 +109,8 @@ public class CurrentTaskFragment extends TaskFragment {
     //    Для добавления задач
     @Override
     public void addTask(ModelTask newTask, boolean saveToDB) {
+
+
         int position = -1;
 
 //        Присвоим значение null разделителю
@@ -120,17 +123,22 @@ public class CurrentTaskFragment extends TaskFragment {
 //            списка, то новый элемент будет добавляться на позицию выше
             if (adapter.getItem(i).isTask()) {
                 ModelTask task = (ModelTask) adapter.getItem(i);
+
+                System.out.println("only time " + newTask.getOnlyTime());
+                System.out.println("getDate " + task.getDate());
+                System.out.println((newTask.getOnlyTime() < task.getDate()) ? "Yes" : "No");
+
+                System.out.println((newTask.getOnlyTime() < task.getOnlyTime()) ? "Yes" : "No");
+
                 if (newTask.getDate() < task.getDate()) {
                     position = i;
+
 //                    Прерывание цикла при нахождении элемента с большей датой
                     break;
                 }
-                // TODO: 21.12.2015  
-            } else {
-                position = -1;
             }
         }
-
+        System.out.println("позишн " + position);
 
 //        Определяем варианты создания разделителей
 
@@ -178,13 +186,13 @@ public class CurrentTaskFragment extends TaskFragment {
                     separator = new ModelSeparator(ModelSeparator.TYPE_FUTURE);
                 }
             }
-        } else {
+        }
+        if (newTask.getOnlyTime() != 0) {
             newTask.setDateStatus(ModelSeparator.TYPE_REPEAT);
             if (!adapter.containsSeparatorRepeat) {
                 adapter.containsSeparatorRepeat = true;
                 separator = new ModelSeparator(ModelSeparator.TYPE_REPEAT);
             }
-
         }
 
 //        Если позиция не равна -1, т.е. ни один элемент из списка не больше нового,
@@ -193,19 +201,36 @@ public class CurrentTaskFragment extends TaskFragment {
 
 //            Для предотвращения размещения некорректных задач в разделителях
             if (!adapter.getItem(position - 1).isTask()) {
+                System.out.println(" этап 1 ");
                 if (position - 2 >= 0 && adapter.getItem(position - 2).isTask()) {
                     ModelTask task = (ModelTask) adapter.getItem(position - 2);
+                    System.out.println(" этап 2 ");
                     if (task.getDateStatus() == newTask.getDateStatus()) {
                         position -= 1;
+                        System.out.println(" этап 3 ");
                     }
-                } else if (position - 2 < 0 && newTask.getDate() == 0) {
+                } else if ((position - 2 < 0 && newTask.getDate() == 0) && (position - 2 < 0 && newTask.getOnlyTime() == 0)) { //вот тут  говнишко затаилось
                     position -= 1;
+                    System.out.println(" этап 4 ");
                 }
             }
 
             if (separator != null) {
-                adapter.addItem(position - 1, separator);
+                try {
+
+                    System.out.println("Размер массива " + adapter.items.size());
+                    System.out.println("position " + position);
+
+                    System.out.println(" этап 5 ");
+                    adapter.addItem(position - 1, separator);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
             }
+            System.out.println(" этап 5 ");
             adapter.addItem(position, newTask);
         } else {
             if (separator != null) {

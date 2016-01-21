@@ -44,18 +44,13 @@ public class EditTaskDialogFragment extends DialogFragment {
         args.putLong("date", task.getDate());
         args.putInt("priority", task.getPriority());
         args.putLong("time_stamp", task.getTimeStamp());
-//        *****************************************
-//        args.putInt("hour", task.getHour());
-//        args.putInt("minute", task.getMinute());
 
         String dayArray = "";
         for (int i = 0; i < task.getDay().length; i++) {
             dayArray += task.getDay()[i];
         }
         args.putString("day", dayArray);
-
         args.putLong("onlyTime", task.getOnlyTime());
-//        *****************************************
         editTaskDialogFragment.setArguments(args);
         return editTaskDialogFragment;
     }
@@ -87,23 +82,19 @@ public class EditTaskDialogFragment extends DialogFragment {
         int priority = args.getInt("priority", 0);
         long timeStamp = args.getLong("time_stamp", 0);
         //int day = args.getInt("day", 0);
-        int hour = args.getInt("priority", 0);
-        int minute = args.getInt("priority", 0);
 
         long onlyTime = args.getLong("onlyTime",0);
 
         String dayArray = args.getString("day");
         day = new int[7];
 
+        assert dayArray != null;
         for (int i = 0; i < dayArray.length(); i++) {
             day[i] = Integer.parseInt(String.valueOf(dayArray.charAt(i)));
-            System.out.println(Integer.parseInt(String.valueOf(dayArray.charAt(i))));
+            System.out.println(Integer.parseInt(String.valueOf(dayArray.charAt(i))));//номера дней в консоли
         }
-//        String day = args.getString("day");
 
-//        final ModelTask task = new ModelTask(title, date, priority, 0, timeStamp, day, hour, minute, onlyTime);
         final ModelTask task = new ModelTask(title, date, priority, 0, timeStamp, day, onlyTime);
-
 
         //        Создаем экземпляр от AlertDialog.Builder
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -127,12 +118,9 @@ public class EditTaskDialogFragment extends DialogFragment {
         final TextInputLayout tilTime = (TextInputLayout) container.findViewById(R.id.tilDialogTaskTime);
         final EditText etTime = tilTime.getEditText();
 
-//        ******************************************************************************************
         final TextInputLayout tilWeekTime = (TextInputLayout) container.findViewById(R.id.tilDialogTaskTimeWeekDays);
         final EditText etTimeWeekDays = tilWeekTime.getEditText();
-//        ******************************************************************************************
 
-//        ******************************************************************************************
 //        Инициализируем переключатель для выбора дней
         SwitchCompat mSwitch = (SwitchCompat) container.findViewById(R.id.switchRepeat);
         final TableLayout tblLayout = (TableLayout) container.findViewById(R.id.tblLayoutDays);
@@ -153,7 +141,6 @@ public class EditTaskDialogFragment extends DialogFragment {
         final TextView tvTh = (TextView) container.findViewById(R.id.tvThursday);
         final TextView tvFr = (TextView) container.findViewById(R.id.tvFriday);
         final TextView tvSa = (TextView) container.findViewById(R.id.tvSaturday);
-
 
 //        Переключатель для показа выбора дней
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -281,7 +268,6 @@ public class EditTaskDialogFragment extends DialogFragment {
                 }
             }
         });
-//        ******************************************************************************************
 
 //        Инициализируем Спиннер
         Spinner spPriority = (Spinner) container.findViewById(R.id.spDialogTaskPriority);
@@ -305,10 +291,8 @@ public class EditTaskDialogFragment extends DialogFragment {
         tilWeekTime.setHintAnimationEnabled(true);
         tilWeekTime.setHint(getResources().getString(R.string.dialog_task_time));
 
-
 //        Передаем все данные в билдер для формирования диалога
         builder.setView(container);
-
 
 //        Создадиим Адаптер для Спиннера
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<>(getActivity(),
@@ -380,6 +364,7 @@ public class EditTaskDialogFragment extends DialogFragment {
             }
         });
 
+        assert etTime != null;
         etTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -445,8 +430,6 @@ public class EditTaskDialogFragment extends DialogFragment {
                 timePickerFragment.show(getFragmentManager(), "TimePickerFragment");
             }
         });
-//        ******************************************************************************************
-
 
 //        Установим кнопки подтверждения и отмены
         builder.setPositiveButton(R.string.dialog_OK, new DialogInterface.OnClickListener() {
@@ -456,7 +439,6 @@ public class EditTaskDialogFragment extends DialogFragment {
                 task.setTitle(etTitle.getText().toString());
                 task.setStatus(ModelTask.STATUS_CURRENT);//установим статус задачи
 //                Если длина даты или времени не равна 0, то устанавливаем в задачу новую дату из календаря
-//**************************************************************************************************
                 if (su.isChecked()) {
                     task.setDay(0, 1);
                     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,1)");
@@ -485,7 +467,7 @@ public class EditTaskDialogFragment extends DialogFragment {
                     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,7)");
                     task.setDay(6, 7);
                 } else task.setDay(6, 0);
-//**************************************************************************************************
+
 //                if (etDate.length() != 0 || etTime.length() != 0) {
 //                    task.setDate(calendar.getTimeInMillis());
 //

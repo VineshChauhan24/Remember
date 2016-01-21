@@ -17,6 +17,7 @@ import ru.echodc.ru.remember.R;
  * Приемник широковещательных событий
  */
 public class AlarmReceiver extends BroadcastReceiver {
+    int[] day;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,11 +26,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         long timeStamp = intent.getLongExtra("time_stamp", 0);//время создания, по умолчанию 0
         int color = intent.getIntExtra("color", 0);//цвет приоритета задачи, по умолчанию 0
 //        ******************************************************************************************
+        long onlyTime = intent.getLongExtra("onlyTime", 0);
+
 
 //        String dayString = intent.getStringExtra("day");//день недели
-//        int[] day = new int [7];
-//
-//        for(int i = 0;i<dayString.length();i++){
+//        day = new int[7];
+////
+//        for (int i = 0; i < dayString.length(); i++) {
 //            day[i] = Integer.parseInt(String.valueOf(dayString.charAt(i)));
 //            System.out.println(Integer.parseInt(String.valueOf(dayString.charAt(i))));//номера дней в консоли
 //        }
@@ -51,6 +54,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) timeStamp,
                 resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        PendingIntent pendingIntentTime = PendingIntent.getActivity(context, (int) onlyTime,
+                resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
 //        Обратимся к ресурсам для удобства
         Resources res = context.getResources();
 
@@ -61,18 +68,28 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setColor(context.getResources().getColor(color));//цвет иконки задачи
         builder.setSmallIcon(R.drawable.ic_check_white_48dp);
 
-//        Указываем что быдет использованно от системы по умолчанию
+//        Указываем что будет использованно от системы по умолчанию
         builder.setDefaults(Notification.DEFAULT_ALL);
 //        В Контент отдаем pendingIntent
-        builder.setContentIntent(pendingIntent);
+        if (pendingIntent != null) {
+            builder.setContentIntent(pendingIntent);
+        } else {
+            builder.setContentIntent(pendingIntentTime);
+        }
+
+//        builder.setContentIntent(pendingIntent);
 
 //        Создаем уведомление
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_AUTO_CANCEL;//при нажатии пользователем, флаг удаляется
 
 //        Для информирования о фоновых событиях
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify((int) timeStamp, notification);
-
+        if (onlyTime != 0) {
+            NotificationManager notificationManagerRepeat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManagerRepeat.notify((int) onlyTime, notification);
+        } else {
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify((int) timeStamp, notification);
+        }
     }
 }

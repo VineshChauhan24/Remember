@@ -100,8 +100,6 @@ public abstract class TaskFragment extends Fragment {
                             if (isRemoved[0]) {
 //                                Метод для уделения уведомления
                                 alarmHelper.removeAlarm(timeStamp);
-
-
                                 activity.dbHelper.removeTask(timeStamp);
                             }
                         }
@@ -126,15 +124,11 @@ public abstract class TaskFragment extends Fragment {
         dialogBuilder.show();
     }
 
-//    Метод вызова диалога
-    public void showTaskEditDialog(ModelTask task){
+    //    Метод вызова диалога
+    public void showTaskEditDialog(ModelTask task) {
         DialogFragment editingTaskDialog = EditTaskDialogFragment.newInstance(task);
-        editingTaskDialog.show(getActivity().getFragmentManager(),"EditTaskDialogFragment");
+        editingTaskDialog.show(getActivity().getFragmentManager(), "EditTaskDialogFragment");
     }
-
-//    public void removeAllTasks() {
-//        adapter.removeAllItems();
-//    }
 
     public abstract void findTasks(String title);
 

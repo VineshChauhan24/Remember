@@ -91,7 +91,7 @@ public class ScrollingAboutActivity extends MainActivity implements View.OnClick
                 startActivity(intent);
                 break;
             case R.id.vklinkYarik:
-                address = Uri.parse("***");
+                address = Uri.parse("https://vk.com/id11633052");
                 intent = new Intent(Intent.ACTION_VIEW, address);
                 startActivity(intent);
                 break;
@@ -101,7 +101,7 @@ public class ScrollingAboutActivity extends MainActivity implements View.OnClick
                 startActivity(intent);
                 break;
             case R.id.fblinkYarik:
-                address = Uri.parse("***");
+                address = Uri.parse("https://www.facebook.com/profile.php?id=100006148275102");
                 intent = new Intent(Intent.ACTION_VIEW, address);
                 startActivity(intent);
                 break;

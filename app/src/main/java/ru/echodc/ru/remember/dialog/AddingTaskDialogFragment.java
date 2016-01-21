@@ -374,8 +374,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 timePickerFragment.show(getFragmentManager(), "TimePickerFragment");
             }
         });
-//        ******************************************************************************************
-
 
 //        Установим кнопки подтверждения и отмены
         builder.setPositiveButton(R.string.dialog_OK, new DialogInterface.OnClickListener() {
@@ -385,7 +383,7 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 assert etTitle != null;
                 task.setTitle(etTitle.getText().toString());
                 task.setStatus(ModelTask.STATUS_CURRENT);//установим статус задачи
-//                **********************************************************************************
+
 //                Установим отмеченные дни
                 if (su.isChecked()) {
                     task.setDay(0, 1);
@@ -416,7 +414,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                     task.setDay(6, 7);
                 }
 
-//                **********************************************************************************
 //                Если длина даты или времени не равна 0, то устанавливаем в задачу новую дату из календаря
                 if (etDate.length() != 0 || etTime.length() != 0) {
                     task.setDate(calendar.getTimeInMillis());
@@ -427,7 +424,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
 //                **********************************************************************************
                 } else if (etTimeWeekDays.length() != 0) {
                     task.setOnlyTime(calendar.getTimeInMillis());
-//                    task.setOnlyTime(task.getHour(), task.getMinute());
 
                 }
                 AlarmHelper alarmHelper = AlarmHelper.getInstance();

@@ -26,26 +26,21 @@ public class AlarmSetter extends BroadcastReceiver {
                 Integer.toString(ModelTask.STATUS_OVERDUE)}, DBHelper.TASK_DATE_COLUMN));
 
 //        Устанавливаем напоминание через цикл foreach
+//        for (ModelTask task : tasks) {
+//            if (task.getDate() != 0) {
+//                alarmHelper.setAlarm(task);
+//                System.out.println("**********************************************************Выбран аларм по Дате");
+////            } else if (task.getOnlyTime() != 0 && task.getDate() == 0) {
+//            } else if (task.getDate() == 0 || task.getDay() != null || task.getOnlyTime() != 0) {
+//                alarmHelper.setAlarm(task);
+//                System.out.println("******************************************************** Выбран аларм по Дням");
+//            }
+//        }
         for (ModelTask task : tasks) {
-            if (task.getDate() != 0) {
+            if (task.getDate() != 0 && task.getOnlyTime() != 0) {
                 alarmHelper.setAlarm(task);
             }
         }
 
-//        ******************************************************************************************
-        ///*
-        // правильно ли я запрос делаю в базу? Обращаюсь к Хелперу, забираю строку чтобы был текущий стаус
-        // потом в колонку с днями
-        // если запрос не NULL , через цикл ставим аларм
-        // */
-        //
-//        Если в запросе к базе в задаче существует стобик с днями, то установим напоминание через цикл
-//
-//        if (dbHelper.query().getTasks(DBHelper.SELECTION_STATUS, new String[]{Integer.toString(ModelTask.STATUS_CURRENT)}, DBHelper.TASK_DAY_COLUMN) != null) {
-//            for (ModelTask task: tasks) {
-//                    alarmHelper.setAlarm(task);
-//            }
-//        }
-//        ******************************************************************************************
     }
 }

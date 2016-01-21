@@ -154,7 +154,7 @@
                         android:id="@+id/imgYarik"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/i_am" />
+                        android:src="@drawable/yarik" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
