@@ -85,7 +85,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-//        Так было изначально
+//        Изначальный вариант
 //        db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
 //        onCreate(db);//пересоздаем таблицу
 
@@ -107,32 +107,32 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //                Созадем временную таблицу
                 db.execSQL(TASKS_TEMP_TABLE_CREATE_SCRIPT);
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Временная таблица создана");
+                System.out.println("=========================                                       Временная таблица создана");
 
 //                Вставляем данные во временную таблицу из таблицы task_table
                 db.execSQL("INSERT INTO temp_task_table (task_title, task_date, task_priority, task_status, task_time_stamp)" +
                         " SELECT task_title, task_date, task_priority, task_status, task_time_stamp FROM task_table ");
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Данные вставлены во временную таблицу");
+                System.out.println("=========================                                       Данные вставлены во временную таблицу");
 
 //                Удаляем таблицу task_table если она существует
                 db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Таблица изначальная УДАЛЕНА");
+                System.out.println("=========================                                       Таблица изначальная УДАЛЕНА");
 
                 onCreate(db);//создаем пустую таблицу для новой версии базы
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Пустая таблица создана");
+                System.out.println("=========================                                       Пустая таблица создана");
 
 //                Вставляем данные пользователя из временной таблицы в новую таблицу task_table
                 db.execSQL("INSERT INTO task_table" +
                         " (task_title, task_date, task_priority, task_status, task_time_stamp)" +
                         " SELECT task_title, task_date, task_priority, task_status, task_time_stamp FROM temp_task_table ");
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Данные вставлены из временной таблицы в новую");
+                System.out.println("=========================                                       Данные вставлены из временной таблицы в новую");
 
 //                Удаляем временную талицу
                 db.execSQL("DROP TABLE IF EXISTS temp_task_table ");
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Временная таблица УДАЛЕНА");
+                System.out.println("=========================                                       Временная таблица УДАЛЕНА");
 
                 db.setTransactionSuccessful();
-                System.out.println("®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®                                       Транзакиця прошла успешно");
+                System.out.println("=========================                                       Транзакиця прошла успешно");
             } finally {
                 db.endTransaction();
             }
@@ -141,17 +141,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //    Сохраняем задачи
     public void saveTask(ModelTask task) {
+
 //        Формируем данных для вставки
         ContentValues newValues = new ContentValues();
-
         newValues.put(TASK_TITLE_COLUMN, task.getTitle());
         newValues.put(TASK_DATE_COLUMN, task.getDate());
         newValues.put(TASK_STATUS_COLUMN, task.getStatus());
         newValues.put(TASK_PRIORITY_COLUMN, task.getPriority());
         newValues.put(TASK_TIME_STAMP_COLUMN, task.getTimeStamp());
-
-//        Запишет [0,0,0,0,0,0,0] в ячейку дней
-//        newValues.put(TASK_DAY_COLUMN, Arrays.toString(task.getDay()));
 
         String dayTemp = "";
 

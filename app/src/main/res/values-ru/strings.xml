@@ -43,6 +43,7 @@
     <string name="task_adding_cancel">Отменено.</string>
     <string name="moved_to_current">Перемещено в "Текущие"</string>
     <string name="moved_to_done">Перемещено в "Выполненные"</string>
+    <string name="toast_forgot_to_choose_a_day">Вы забыли выбрать день. Дни проставлены автоматически</string>
 
     <!-- Days of week-->
     <string name="sunday">Вс</string>

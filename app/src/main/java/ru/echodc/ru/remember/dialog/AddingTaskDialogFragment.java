@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -42,7 +43,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
 //    Создаем Интерфейс добавления задачи и присвоеи его кнопкам PositiveButton, NegativeButton
     public interface AddingTaskListener {
         void onTaskAdded(ModelTask newTask);
-
         void onTaskAddingCancel();
     }
 
@@ -66,8 +66,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
 //        Создаем экземпляр от AlertDialog.Builder
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-//        builder.setTitle(R.string.dialog_title);
-
 //        Для работы с макетом диалога
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -85,14 +83,11 @@ public class AddingTaskDialogFragment extends DialogFragment {
         final TextInputLayout tilTime = (TextInputLayout) container.findViewById(R.id.tilDialogTaskTime);
         final EditText etTime = tilTime.getEditText();
 
-//        ******************************************************************************************
         final TextInputLayout tilWeekTime = (TextInputLayout) container.findViewById(R.id.tilDialogTaskTimeWeekDays);
         final EditText etTimeWeekDays = tilWeekTime.getEditText();
-//        ******************************************************************************************
 
-//        ******************************************************************************************
 //        Инициализируем переключатель для выбора дней
-        SwitchCompat mSwitch = (SwitchCompat) container.findViewById(R.id.switchRepeat);
+        final SwitchCompat mSwitch = (SwitchCompat) container.findViewById(R.id.switchRepeat);
         final TableLayout tblLayout = (TableLayout) container.findViewById(R.id.tblLayoutDays);
         tblLayout.setVisibility(View.GONE);
 
@@ -121,14 +116,15 @@ public class AddingTaskDialogFragment extends DialogFragment {
                     tblLayout.setVisibility(View.VISIBLE);
                     tilDate.setVisibility(View.GONE);
                     tilTime.setVisibility(View.GONE);
+                    assert etDate != null;
                     etDate.setText(null);
+                    assert etTime != null;
                     etTime.setText(null);
 
 //        Перебор вариантов для отметки нужных дней
                     OnCheckedChangeListener ochl = new OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                Calendar calendar = Calendar.getInstance();
 
                             switch (buttonView.getId()) {
                                 case R.id.chbSunday:
@@ -144,7 +140,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         mo.setChecked(true);
                                         tvMo.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                                     } else {
                                         tvMo.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -153,7 +148,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         tu.setChecked(true);
                                         tvTu.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
                                     } else {
                                         tvTu.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -162,7 +156,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         we.setChecked(true);
                                         tvWe.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
                                     } else {
                                         tvWe.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -171,7 +164,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         th.setChecked(true);
                                         tvTh.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
                                     } else {
                                         tvTh.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -180,7 +172,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         fr.setChecked(true);
                                         tvFr.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
                                     } else {
                                         tvFr.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -189,7 +180,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                                     if (isChecked) {
                                         sa.setChecked(true);
                                         tvSa.setTextColor(getActivity().getResources().getColor(R.color.white));
-//                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
                                     } else {
                                         tvSa.setTextColor(getActivity().getResources().getColor(R.color.accent));
                                     }
@@ -222,8 +212,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 }
             }
         });
-//        ******************************************************************************************
-
 
 //        Инициализируем Спиннер
         Spinner spPriority = (Spinner) container.findViewById(R.id.spDialogTaskPriority);
@@ -245,9 +233,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
 //        Создадиим Адаптер для Спиннера
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.priority));
-////        Создадиим Адаптер для Спиннера
-//        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_spinner_dropdown_item, ModelTask.PRIORITY_LEVELS);
 
 //        Присвоим Адаптер Спиннеру и установим ему слушатель
         spPriority.setAdapter(priorityAdapter);
@@ -270,12 +255,10 @@ public class AddingTaskDialogFragment extends DialogFragment {
         calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) + 1);
 
 //        Присвоим слушателей для TimePickerDialog и DatePickerDialog
-//        ***
-        assert etDate != null;//????
-//        ***
-        etDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        assert etDate != null;
+                etDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //                Чтобы избежать накладывания анимации, добавим пробел по нажатию на поле ввода
 //                Создадим проверку на длину текста в поле
                 if (etDate.length() == 0) {
@@ -289,13 +272,10 @@ public class AddingTaskDialogFragment extends DialogFragment {
                         calendar.set(Calendar.YEAR, year);
                         calendar.set(Calendar.MONTH, monthOfYear);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                        Calendar dateCalendar = Calendar.getInstance();//было раньше
-//                        dateCalendar.set(year, monthOfYear, dayOfMonth);//было раньше
                         etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
-//                        etDate.setText(Utils.getDate(dateCalendar.getTimeInMillis()));//было раньше
                     }
 
-                    //                    Чтобы при нажатии кнопки Cancel текст не устанавливался
+//                    Чтобы при нажатии кнопки Cancel текст не устанавливался
                     @Override
                     public void onCancel(DialogInterface dialog) {
                         etDate.setText(null);
@@ -322,15 +302,13 @@ public class AddingTaskDialogFragment extends DialogFragment {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
                         calendar.set(Calendar.SECOND, 0);
-//                        Calendar timeCalendar = Calendar.getInstance();//было раньше
-////                        Нельзя задать только время, нужны все параметры
-////                        год, меся и день задаим нулями 0,0,0
-//                        timeCalendar.set(0, 0, 0, hourOfDay, minute);//было раньше
+
+//                        Нельзя задать только время, нужны все параметры
+//                        год, месяц и день зададим нулями 0,0,0
                         etTime.setText(Utils.getTime(calendar.getTimeInMillis()));
-//                        etTime.setText(Utils.getTime(timeCalendar.getTimeInMillis()));//было раньше
                     }
 
-                    //                    Чтобы при нажатии кнопки Cancel текст не устанавливался
+//                    Чтобы при нажатии кнопки Cancel текст не устанавливался
                     @Override
                     public void onCancel(DialogInterface dialog) {
                         etTime.setText(null);
@@ -341,7 +319,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
             }
         });
 
-//        ******************************************************************************************
         assert etTimeWeekDays != null;
         etTimeWeekDays.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -350,6 +327,7 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 if (etTimeWeekDays.length() == 0) {
                     etTimeWeekDays.setText(" ");
                 }
+
                 DialogFragment timePickerFragment = new TimePickerFragment() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -357,14 +335,13 @@ public class AddingTaskDialogFragment extends DialogFragment {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
                         calendar.set(Calendar.SECOND, 0);
-//                        Calendar timeCalendar = Calendar.getInstance();//было раньше
-////                        Нельзя задать только время, нужны все параметры
-////                        год, месяц и день задаим нулями 0,0,0
-//                        timeCalendar.set(0, 0, 0, hourOfDay, minute);//было раньше
+
+//                        Нельзя задать только время, нужны все параметры
+//                        год, месяц и день зададим нулями 0,0,0
                         etTimeWeekDays.setText(Utils.getTime(calendar.getTimeInMillis()));
                     }
 
-                    //                    Чтобы при нажатии кнопки Cancel текст не устанавливался
+//                    Чтобы при нажатии кнопки Cancel текст не устанавливался
                     @Override
                     public void onCancel(DialogInterface dialog) {
                         etTimeWeekDays.setText(null);
@@ -387,48 +364,56 @@ public class AddingTaskDialogFragment extends DialogFragment {
 //                Установим отмеченные дни
                 if (su.isChecked()) {
                     task.setDay(0, 1);
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,1)");
+                    System.out.println("=========================                                   setDay(1,1)");
                 }
                 if (mo.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,2)");
+                    System.out.println("=========================                                   setDay(1,2)");
                     task.setDay(1, 2);
                 }
                 if (tu.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,3)");
+                    System.out.println("=========================                                   setDay(1,3)");
                     task.setDay(2, 3);
                 }
                 if (we.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,4)");
+                    System.out.println("=========================                                   setDay(1,4)");
                     task.setDay(3, 4);
                 }
                 if (th.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,5)");
+                    System.out.println("=========================                                   setDay(1,5)");
                     task.setDay(4, 5);
                 }
                 if (fr.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,6)");
+                    System.out.println("=========================                                   setDay(1,6)");
                     task.setDay(5, 6);
                 }
                 if (sa.isChecked()) {
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> setDay(1,7)");
+                    System.out.println("=========================                                   setDay(1,7)");
                     task.setDay(6, 7);
                 }
 
-//                Если длина даты или времени не равна 0, то устанавливаем в задачу новую дату из календаря
-                if (etDate.length() != 0 || etTime.length() != 0) {
-                    task.setDate(calendar.getTimeInMillis());
+                //если не выбран ни один день, дни простввятся автоматом
+                if (mSwitch.isChecked() && !su.isChecked() && !mo.isChecked() && !tu.isChecked()
+                        && !we.isChecked() && !th.isChecked() && !fr.isChecked() && !sa.isChecked()) {
+                    task.setDay(0, 1);
+                    task.setDay(1, 2);
+                    task.setDay(2, 3);
+                    task.setDay(3, 4);
+                    task.setDay(4, 5);
+                    task.setDay(5, 6);
+                    task.setDay(6, 7);
 
-//                    Создадим новый объект AlarmHelper
-//                    AlarmHelper alarmHelper = AlarmHelper.getInstance();
-//                    alarmHelper.setAlarm(task);
-//                **********************************************************************************
-                } else if (etTimeWeekDays.length() != 0) {
-                    task.setOnlyTime(calendar.getTimeInMillis());
-
+                    Toast.makeText(context, R.string.toast_forgot_to_choose_a_day, Toast.LENGTH_LONG).show();
                 }
+
+//                Если длина даты или времени не равна 0, то устанавливаем в задачу новую дату из календаря
+                if (etDate.length() != 0 || etTime.length() != 0 || !mSwitch.isChecked()) {
+                    task.setDate(calendar.getTimeInMillis());
+                } else if (etTimeWeekDays.length() != 0 || mSwitch.isChecked()) {
+                    task.setOnlyTime(calendar.getTimeInMillis());
+                }
+
                 AlarmHelper alarmHelper = AlarmHelper.getInstance();
                 alarmHelper.setAlarm(task);
-//                **********************************************************************************
 
 //                Установим задаче статус Текущая
                 task.setStatus(ModelTask.STATUS_CURRENT);

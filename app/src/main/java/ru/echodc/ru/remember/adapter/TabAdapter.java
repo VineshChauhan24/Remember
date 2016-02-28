@@ -13,7 +13,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
     public static final int CURRENT_TASK_FRAGMENT_POSITION = 0;
     public static final int DONE_TASK_FRAGMENT_POSITION = 1;
 
-    //    Чтобы оъекты не создавались при каждом вызове метода getItem(...)
+    //    Чтобы объекты не создавались при каждом вызове метода getItem(...)
     private CurrentTaskFragment currentTaskFragment;
     private DoneTaskFragment doneTaskFragment;
 
@@ -32,15 +32,12 @@ public class TabAdapter extends FragmentStatePagerAdapter {
         switch (i) {
             case 0:
                 return currentTaskFragment;
-//                return new CurrentTaskFragment();//было раньше
             case 1:
                 return doneTaskFragment;
-//                return new DoneTaskFragment();//было раньше
 //            Если ни одно значение не подходит, по умолчанию вернется null
             default:
                 return null;
         }
-
     }
 
     @Override

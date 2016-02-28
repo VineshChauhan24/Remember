@@ -74,10 +74,6 @@ public class DBUpdateManager {
             dayTemp += days[i];
         }
 
-//        for (int day : days) {
-//            dayTemp += day;
-//        }
-
         ContentValues cv = new ContentValues();
         cv.put(column, dayTemp);
 

@@ -17,7 +17,7 @@
             android:gravity="center_horizontal"
             android:padding="16dp"
             android:text="@string/dialog_title"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
         <!-- Underline with this bluish color -->
         <View
             android:layout_width="match_parent"
@@ -96,15 +96,14 @@
             android:layout_marginRight="16dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewRepeat"
                 style="?android:attr/listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:layout_marginBottom="16dp"
+                android:layout_toLeftOf="@+id/switchRepeat"
                 android:layout_toStartOf="@+id/switchRepeat"
                 android:text="@string/repeat"
                 android:textSize="16sp"
@@ -114,10 +113,10 @@
                 android:id="@+id/switchRepeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView"
+                android:layout_alignBaseline="@+id/textViewRepeat"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentTop="false" />
+                android:layout_alignParentRight="true"
+                android:singleLine="true" />
 
 
             <TableLayout
@@ -126,7 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/textViewRepeat"
                 android:background="@drawable/dialog_days_border"
                 android:baselineAligned="false"
                 android:measureWithLargestChild="false"

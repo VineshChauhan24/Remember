@@ -36,11 +36,8 @@ public class DBQueryManager {
                 System.out.println(Integer.parseInt(String.valueOf(dayString.charAt(i))));
             }
 
-//            int hour = cursor.getInt(cursor.getColumnIndex(DBHelper.TASK_HOUR_COLUMN));
-//            int minute = cursor.getInt(cursor.getColumnIndex(DBHelper.TASK_MINUTE_COLUMN));
             long timeDay = cursor.getLong(cursor.getColumnIndex(DBHelper.TASK_TIME_DAY_COLUMN));
 
-//            modelTask = new ModelTask(title, date, priority, status, timeStamp, day, hour, minute, timeDay);
             modelTask = new ModelTask(title, date, priority, status, timeStamp, day, timeDay);
         }
 //        Закрываем подключение к базе
@@ -54,11 +51,8 @@ public class DBQueryManager {
     public List<ModelTask> getTasks(String selection, String[] selectionArgs, String orderBy) {
         List<ModelTask> tasks = new ArrayList<>();
 
-
 //        Находим значения в базе и формируем из них задачи
-        Cursor c = database.query(DBHelper.TASK_TABLE, null, selection, selectionArgs, null, null, orderBy);//изначальный запрос
-//        Cursor c = database.query(DBHelper.TASK_TABLE, null, "_id = ?", new String[]{}, null, null, orderBy);
-//        Cursor c = database.query(DBHelper.TASK_TABLE, null, null, selectionArgs, null, null, null);
+        Cursor c = database.query(DBHelper.TASK_TABLE, null, selection, selectionArgs, null, null, orderBy);// запрос
 
 //        if (c.moveToFirst()) {
         c.moveToFirst();
@@ -70,15 +64,8 @@ public class DBQueryManager {
                 int status = c.getInt(c.getColumnIndex(DBHelper.TASK_STATUS_COLUMN));
                 long timeStamp = c.getLong(c.getColumnIndex(DBHelper.TASK_TIME_STAMP_COLUMN));
                 String dayString = c.getString(c.getColumnIndex(DBHelper.TASK_DAY_COLUMN));
-//                int hour = c.getInt(c.getColumnIndex(DBHelper.TASK_HOUR_COLUMN));
-//                int minute = c.getInt(c.getColumnIndex(DBHelper.TASK_MINUTE_COLUMN));
 
                 int[] day = new int[7];
-
-//                for (int i = 0; i < dayString.length(); i++) {
-//                    day[i] = Integer.parseInt(String.valueOf(dayString.charAt(i)));
-//                    System.out.println(Integer.parseInt(String.valueOf(dayString.charAt(i))));
-//                }
 
                 if (dayString != null) {
                     for (int i = 0; i < dayString.length(); i++) {
@@ -88,11 +75,10 @@ public class DBQueryManager {
                 }
 
                 long timeDay = c.getLong(c.getColumnIndex(DBHelper.TASK_TIME_DAY_COLUMN));
-                //                **********************************************************************************
 
-//                ModelTask modelTask = new ModelTask(title, date, priority, status, timeStamp, day, hour, minute, timeDay);
                 ModelTask modelTask = new ModelTask(title, date, priority, status, timeStamp, day, timeDay);
                 tasks.add(modelTask);
+
             } while (c.moveToNext());
         }
 

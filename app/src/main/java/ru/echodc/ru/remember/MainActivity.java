@@ -34,21 +34,22 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     FragmentManager mFragmentManager;
 
     PreferenceHelper mPreferenceHelper;
+
     TabAdapter tabAdapter;
     TaskFragment mCurrentTaskFragment;
     TaskFragment mDoneTaskFragment;
+
     boolean showScreen = false;
     SearchView searchView;
 
     public DBHelper dbHelper;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Покажем баннер
+//
+//        Покажем баннер с рекламой
 //        Ads.showBanner(this);
 
 //        Инициализируем AlarmHelper
@@ -64,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 //        Инициализация Фрагмент менеджера
         mFragmentManager = getFragmentManager();
 
-
         runSplash();
-
 
         setUI();
     }
@@ -80,10 +79,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     @Override
     protected void onResume() {
         super.onResume();
-
         MyApplication.activityResumed();
-
-
     }
 
     @Override
@@ -105,9 +101,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         Intent intent;
 
@@ -117,15 +111,14 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
 //            Сохраняем состояние флага в PreferenceHelper
                 mPreferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
                 return true;
-            case R.id.action_authors:
 
+            case R.id.action_authors:
                 intent = new Intent(this, ScrollingAboutActivity.class);
                 mPreferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, true);
                 startActivity(intent);
-
                 return true;
-            default:
 
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }

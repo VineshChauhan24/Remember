@@ -4,19 +4,18 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 
 import java.util.Calendar;
 
+import ru.echodc.ru.remember.Utils;
 import ru.echodc.ru.remember.model.ModelTask;
 
 public class AlarmHelper {
     private static AlarmHelper instance;
     private Context context;
     private AlarmManager alarmManager;
-    Calendar c;
     PendingIntent pendingIntent;
-    //    PendingIntent pendingIntentRepeat;
+
     private boolean sunday;
     private boolean monday;
     private boolean tuesday;
@@ -24,7 +23,6 @@ public class AlarmHelper {
     private boolean thursday;
     private boolean friday;
     private boolean saturday;
-//    private ModelTask task;
 
     //    Создаем AlarmHelper в случае его отсутствия
     public static AlarmHelper getInstance() {
@@ -46,269 +44,114 @@ public class AlarmHelper {
         intent.putExtra("title", task.getTitle());
         intent.putExtra("time_stamp", task.getTimeStamp());
         intent.putExtra("color", task.getPriorityColor());
-//        intent.putExtra("onlyTime", task.getOnlyTime());
+        intent.putExtra("onlyTime", task.getOnlyTime());
 //        intent.putExtra("day", task.getDay());
 
 //        Если  PendingIntent существует, то новый не создаем, а используем текущий, но с обновленными данными
         pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
                 (int) task.getTimeStamp(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-//        pendingIntentRepeat = PendingIntent.getBroadcast(context.getApplicationContext(),
-//                (int) task.getOnlyTime(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+//        Передаем время пробуджения устройства
         if (task.getDate() != 0) {
             alarmManager.set(AlarmManager.RTC_WAKEUP, task.getDate(), pendingIntent);
         } else {
-//          Иниализация boolean значений
-            checkDay(task);
-//          Аларм приходит из метода forDay(...)
+//          Аларм приходит из метода addAlarm(...)
             for (int i = 0; i < task.getDay().length; i++) {
                 System.out.println(task.getDay()[i]);
-//                Ловим Воскресенье
-                if (task.getDay()[i] == Calendar.SUNDAY) {
-                    System.out.println("==========================================     Установлен ВС");
-                    if (monday) {
-                        forDay(1, task, 1);
-                        break;
-                    } else if (tuesday) {
-                        forDay(1, task, 2);
-                        break;
-                    } else if (wednesday) {
-                        forDay(1, task, 3);
-                        break;
-                    } else if (thursday) {
-                        forDay(1, task, 4);
-                        break;
-                    } else if (friday) {
-                        forDay(1, task, 5);
-                        break;
-                    } else if (saturday) {
-                        forDay(1, task, 6);
-                        break;
-                    } else {
-                        forDay(1, task, 7);
-                    }
-                }
-//                Ловим Понедельник
+
                 if (task.getDay()[i] == Calendar.MONDAY) {
+                    addAlarm(task, Calendar.MONDAY);
                     System.out.println("==========================================     Установлен ПН");
-                    if (tuesday) {
-                        forDay(2, task, 1);
-                        break;
-                    } else if (wednesday) {
-                        forDay(2, task, 2);
-                        break;
-                    } else if (thursday) {
-                        forDay(2, task, 3);
-                        break;
-                    } else if (friday) {
-                        forDay(2, task, 4);
-                        break;
-                    } else if (saturday) {
-                        forDay(2, task, 5);
-                        break;
-                    } else if (sunday) {
-                        forDay(2, task, 6);
-                        break;
-                    } else {
-                        forDay(2, task, 7);
-                    }
                 }
-//                Ловим Вторник
                 if (task.getDay()[i] == Calendar.TUESDAY) {
+                    addAlarm(task, Calendar.TUESDAY);
                     System.out.println("==========================================     Установлен ВТ");
-                    if (wednesday) {
-                        forDay(3, task, 1);
-                        break;
-                    } else if (thursday) {
-                        forDay(3, task, 2);
-                        break;
-                    } else if (friday) {
-                        forDay(3, task, 3);
-                        break;
-                    } else if (saturday) {
-                        forDay(3, task, 4);
-                        break;
-                    } else if (sunday) {
-                        forDay(3, task, 5);
-                        break;
-                    } else if (monday) {
-                        forDay(3, task, 6);
-                        break;
-                    } else {
-                        forDay(3, task, 7);
-                    }
                 }
-//                Ловим Среду
                 if (task.getDay()[i] == Calendar.WEDNESDAY) {
+                    addAlarm(task, Calendar.WEDNESDAY);
                     System.out.println("==========================================     Установлен СР");
-                    if (thursday) {
-                        forDay(4, task, 1);
-                        break;
-                    } else if (friday) {
-                        forDay(4, task, 2);
-                        break;
-                    } else if (saturday) {
-                        forDay(4, task, 3);
-                        break;
-                    } else if (sunday) {
-                        forDay(4, task, 4);
-                        break;
-                    } else if (monday) {
-                        forDay(4, task, 5);
-                        break;
-                    } else if (tuesday) {
-                        forDay(4, task, 6);
-                        break;
-                    } else {
-                        forDay(4, task, 7);
-                    }
                 }
-//                Ловим Четверг
                 if (task.getDay()[i] == Calendar.THURSDAY) {
+                    addAlarm(task, Calendar.THURSDAY);
                     System.out.println("==========================================     Установлен ЧТ");
-                    if (friday) {
-                        forDay(5, task, 1);
-                        break;
-                    } else if (saturday) {
-                        forDay(5, task, 2);
-                        break;
-                    } else if (sunday) {
-                        forDay(5, task, 3);
-                        break;
-                    } else if (monday) {
-                        forDay(5, task, 4);
-                        break;
-                    } else if (tuesday) {
-                        forDay(5, task, 5);
-                        break;
-                    } else if (wednesday) {
-                        forDay(5, task, 6);
-                        break;
-                    } else {
-                        forDay(5, task, 7);
-                    }
                 }
-//                Ловим Пятницу
                 if (task.getDay()[i] == Calendar.FRIDAY) {
+                    addAlarm(task, Calendar.FRIDAY);
                     System.out.println("==========================================     Установлен ПТ");
-                    if (saturday) {
-                        forDay(6, task, 1);
-                        break;
-                    } else if (sunday) {
-                        forDay(6, task, 2);
-                        break;
-                    } else if (monday) {
-                        forDay(6, task, 3);
-                        break;
-                    } else if (tuesday) {
-                        forDay(6, task, 4);
-                        break;
-                    } else if (wednesday) {
-                        forDay(6, task, 5);
-                        break;
-                    } else if (thursday) {
-                        forDay(6, task, 6);
-                        break;
-                    } else {
-                        forDay(6, task, 7);
-                    }
                 }
-//                Ловим Субботу
                 if (task.getDay()[i] == Calendar.SATURDAY) {
+                    addAlarm(task, Calendar.SATURDAY);
                     System.out.println("==========================================     Установлен СУБ");
-                    if (sunday) {
-                        forDay(7, task, 1);
-                        break;
-                    } else if (monday) {
-                        forDay(7, task, 2);
-                        break;
-                    } else if (tuesday) {
-                        forDay(7, task, 3);
-                        break;
-                    } else if (wednesday) {
-                        forDay(7, task, 4);
-                        break;
-                    } else if (thursday) {
-                        forDay(7, task, 5);
-                        break;
-                    } else if (friday) {
-                        forDay(7, task, 6);
-                        break;
-                    } else {
-                        forDay(7, task, 7);
-                    }
+                }
+                if (task.getDay()[i] == Calendar.SUNDAY) {
+                    addAlarm(task, Calendar.SUNDAY);
+                    System.out.println("==========================================     Установлен ВС");
                 }
             }
         }
     }
 
-    private void forDay(int day, ModelTask task, int interval) {
-// TODO: 21.01.2016
+    //    Метод для установки алармов
+    public void addAlarm(ModelTask task, int numberDay) {
 
-//        Intent intent = new Intent(context, AlarmReceiver.class);
-//        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-//        pendingIntent = PendingIntent.getService(context.getApplicationContext(),
-//                day, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        String getOnlyTime = Utils.getTime(task.getOnlyTime());
+        Intent nameDay = new Intent(context, AlarmReceiverRepeat.class);
+        nameDay.putExtra("title", task.getTitle());
+        nameDay.putExtra("time_stamp", task.getTimeStamp());
+        nameDay.putExtra("color", task.getPriorityColor());
+        nameDay.putExtra("nameDay", " ... ");
+//        nameDay.putExtra("numberDay", Calendar.MONDAY);
+        nameDay.putExtra("numberDay", numberDay);
+        nameDay.putExtra("onlyTime", getOnlyTime);
+
+        String[] output = getOnlyTime.split(":");
+        int hour = Integer.parseInt(output[0]);
+        int minutes = Integer.parseInt(output[1]);
 
         Calendar c = Calendar.getInstance();
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.HOUR, 0);
-//        c.set(Calendar.AM_PM, Calendar.AM);
-//        c.set(Calendar.DAY_OF_MONTH, 1);
-        c.set(Calendar.DAY_OF_WEEK, day);
 
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("title", task.getTitle());
-//        intent.putExtra("time_stamp", task.getTimeStamp());
-        intent.putExtra("color", task.getPriorityColor());
-        intent.putExtra("onlyTime", task.getOnlyTime());
-        intent.putExtra("day", task.getDay());
+        c.set(Calendar.YEAR, c.get(Calendar.YEAR));
+        c.set(Calendar.MONTH, c.get(Calendar.MONTH));
+        c.set(Calendar.WEEK_OF_MONTH, c.get(Calendar.WEEK_OF_MONTH));
+        System.out.println("номер недели   " + c.get(Calendar.WEEK_OF_YEAR));
+        System.out.println("проверка   " + task.getDate());
+
+        c.set(Calendar.DAY_OF_WEEK, numberDay);
+        c.set(Calendar.HOUR_OF_DAY, hour);
+        c.set(Calendar.MINUTE, minutes);
+
+        long fullDate = c.getTimeInMillis();
+        nameDay.putExtra("fullDate", c.getTimeInMillis());
+
+        System.out.println(" fullDate " + fullDate);
 
         pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
-                day, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        pendingIntent = PendingIntent.getService(context.getApplicationContext(),
-//                day, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        Формируем напоминание
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-//                c.getTimeInMillis(), AlarmManager.INTERVAL_DAY + interval, pendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                SystemClock.elapsedRealtime(), AlarmManager.INTERVAL_DAY + interval, pendingIntent);
-    }
-
-    private void checkDay(ModelTask task) {
-
-
-        if (task.getDay()[0] != 0) {
-            sunday = true;
-        }
-        if (task.getDay()[1] != 0) {
-            monday = true;
-        }
-        if (task.getDay()[2] != 0) {
-            tuesday = true;
-        }
-        if (task.getDay()[3] != 0) {
-            wednesday = true;
-        }
-        if (task.getDay()[4] != 0) {
-            thursday = true;
-        }
-        if (task.getDay()[5] != 0) {
-            friday = true;
-        }
-        if (task.getDay()[6] != 0) {
-            saturday = true;
-        }
-
+                (int) task.getTimeStamp() + numberDay + 10000, nameDay, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
     //    Метод для удаления задачи по timeStamp
-    public void removeAlarm(long taskTimeStamp) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                (int) taskTimeStamp, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.cancel(pendingIntent);
+    public void removeAlarm(long taskTimeStamp, ModelTask task) {
+
+        System.out.println("зашло в removeAlarm");
+        if (task.getDate() != 0) {
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+                    (int) taskTimeStamp, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.cancel(pendingIntent);
+            System.out.println("зашло в task.getDate()==0");
+        } else {
+            System.out.println("зашло в else");
+            for (int i = 0; i < task.getDay().length; i++) {
+                if (task.getDay()[i] != 0) {
+                    System.out.println("task.getDay()[i]!=0");
+                    Intent intent = new Intent(context, AlarmReceiverRepeat.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+                            (int) taskTimeStamp + task.getDay()[i] + 10000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    alarmManager.cancel(pendingIntent);
+                    System.out.println("отменило  " + task.getDay()[i]);
+                }
+            }
+        }
     }
 }

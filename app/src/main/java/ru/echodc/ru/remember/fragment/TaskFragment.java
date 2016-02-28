@@ -61,7 +61,7 @@ public abstract class TaskFragment extends Fragment {
 
         if (item.isTask()) {
 
-            ModelTask removingTask = (ModelTask) item;
+            final ModelTask removingTask = (ModelTask) item;
 
             final long timeStamp = removingTask.getTimeStamp();
             final boolean[] isRemoved = {false};
@@ -99,7 +99,7 @@ public abstract class TaskFragment extends Fragment {
 //                              то задача окончательно удаляется из базы. Определяется по временной метке
                             if (isRemoved[0]) {
 //                                Метод для уделения уведомления
-                                alarmHelper.removeAlarm(timeStamp);
+                                alarmHelper.removeAlarm(timeStamp, removingTask);
                                 activity.dbHelper.removeTask(timeStamp);
                             }
                         }

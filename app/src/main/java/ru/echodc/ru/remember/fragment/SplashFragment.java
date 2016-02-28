@@ -19,14 +19,12 @@ public class SplashFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         SplashTask splashTask = new SplashTask();
         splashTask.execute();
-
 
         return inflater.inflate(R.layout.fragment_splash, container, false);
     }
@@ -50,5 +48,4 @@ public class SplashFragment extends Fragment {
             return null;
         }
     }
-
 }

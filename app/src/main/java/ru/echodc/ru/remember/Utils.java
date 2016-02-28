@@ -29,6 +29,8 @@ public class Utils {
         return fullDateFormat.format(date);
     }
 
+
+
     //    Для получения названия дней недели из числа
     public static String getDayName(Context context, int day[]) {
 
@@ -37,25 +39,18 @@ public class Utils {
         for (int i = 0; i < day.length; i++) {
             if (day[i] == SUNDAY) {
                 dayName += context.getString(R.string.sunday) + ". ";
-                // d[0] = dayName;
             } else if (day[i] == Calendar.MONDAY) {
                 dayName += context.getString(R.string.monday) + ". ";
-                //  d[1] = dayName;
             } else if (day[i] == Calendar.TUESDAY) {
                 dayName += context.getString(R.string.tuesday) + ". ";
-                //  d[2] = dayName;
             } else if (day[i] == Calendar.WEDNESDAY) {
                 dayName += context.getString(R.string.wednesday) + ". ";
-                // d[3] = dayName;
             } else if (day[i] == Calendar.THURSDAY) {
                 dayName += context.getString(R.string.thursday) + ". ";
-                // d[4] = dayName;
             } else if (day[i] == Calendar.FRIDAY) {
                 dayName += context.getString(R.string.friday) + ". ";
-                // d[5] = dayName;
             } else if (day[i] == Calendar.SATURDAY) {
                 dayName += context.getString(R.string.saturday) + ". ";
-                // d[6] = dayName;
             }
         }
         return dayName;

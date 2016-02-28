@@ -11,8 +11,6 @@ public class ModelTask implements Item {
     public static final int PRIORITY_NORMAL = 1;
     public static final int PRIORITY_HIGH = 2;
 
-    //    public static final String[] PRIORITY_LEVELS = {"Low priority", "Normal priority", "High priority"};//Спиннер теперь формируется из строковых ресурсов
-
     public static final int STATUS_OVERDUE = 0;
     public static final int STATUS_CURRENT = 1;
     public static final int STATUS_DONE = 2;
@@ -24,7 +22,7 @@ public class ModelTask implements Item {
     private long timeStamp;
     private int dateStatus;
 
-    //    Новые поля для определения дней и времени
+    //   Поля для определения дней и времени
     private int[] day;
     private long onlyTime;
 
@@ -154,7 +152,6 @@ public class ModelTask implements Item {
     public void setDateStatus(int dateStatus) {
         this.dateStatus = dateStatus;
     }
-//    **********************************************************************************************
 
     public int[] getDay() {
         return day;

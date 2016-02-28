@@ -20,7 +20,6 @@ import ru.echodc.ru.remember.R;
 public class SendMailDialogFragment extends DialogFragment {
     Intent intent;
 
-
     public static SendMailDialogFragment newInstance(String email) {
 
         SendMailDialogFragment sendMailDialogFragment = new SendMailDialogFragment();
@@ -59,8 +58,7 @@ public class SendMailDialogFragment extends DialogFragment {
         tilMailMessage.setHint(getResources().getString(R.string.dialog_mail_message));
         intent = getActivity().getIntent();
         final String incomingRecipient = intent.getStringExtra("email");
-//        etMailRecipient.setText(incomingRecipient);
-//        tilMailRecipient.getEditText().setText(incomingRecipient);
+        assert etMailRecipient != null;
         etMailRecipient.setText(email);
 
 //        Передаем все данные в билдер для формирования диалога
@@ -83,7 +81,7 @@ public class SendMailDialogFragment extends DialogFragment {
         etMailMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                Чтобы избежать накладывания анимации, добавим пробел по нажатию на поле ввода
+//                Чтобы избежать накладывания анимации, добавим пробел по нажатию на поле ввода
 //                Создадим проверку на длину текста в поле
                 if (etMailMessage.length() == 0) {
                     etMailMessage.setText(" ");
@@ -94,10 +92,9 @@ public class SendMailDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-
-//                ФОрмируем данные для отправки письма
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + etMailRecipient);
-//        Формируем данные для вставки в заголовки отправки письма
+//                Формируем данные для отправки письма
+                System.out.println("=========================                               " + etMailRecipient);
+//                Формируем данные для вставки в заголовки отправки письма
                 System.out.println("Send email >>>>>>>>>>>>>>>>>>>>>>>>>> max");
                 String[] TO = {etMailRecipient.getText().toString()};
                 String[] CC = {""};
@@ -110,12 +107,8 @@ public class SendMailDialogFragment extends DialogFragment {
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, etMailTitle.getText().toString());
                 emailIntent.putExtra(Intent.EXTRA_TEXT, etMailMessage.getText().toString());
 
-
                 // startActivity(emailIntent);
                 startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
-
-//                startActivityForResult(emailIntent, 1);
-//        startActivity(Intent.createChooser(intent, "Send Email"));
                 dialog.dismiss();
             }
         });
@@ -170,6 +163,5 @@ public class SendMailDialogFragment extends DialogFragment {
         });
 
         return alertDialog;
-
     }
 }

@@ -17,7 +17,6 @@ import ru.echodc.ru.remember.R;
  * Приемник широковещательных событий
  */
 public class AlarmReceiver extends BroadcastReceiver {
-//    int[] day;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,19 +24,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         String title = intent.getStringExtra("title");//заголовок
         long timeStamp = intent.getLongExtra("time_stamp", 0);//время создания, по умолчанию 0
         int color = intent.getIntExtra("color", 0);//цвет приоритета задачи, по умолчанию 0
-//        ******************************************************************************************
-        long onlyTime = intent.getLongExtra("onlyTime", 0);
-        String dayName = intent.getStringExtra("day"); // название дня недели
+//        int day = intent.getIntExtra("numberDay", 0);
+//        long onlyTime = intent.getLongExtra("onlyTime", 0);
 
-
-//        String dayString = intent.getStringExtra("day");//день недели
-//        day = new int[7];
-////
-//        for (int i = 0; i < dayString.length(); i++) {
-//            day[i] = Integer.parseInt(String.valueOf(dayString.charAt(i)));
-//            System.out.println(Integer.parseInt(String.valueOf(dayString.charAt(i))));//номера дней в консоли
-//        }
-//        ******************************************************************************************
+//        Покажем заголовок напомнинания при срабатывании
+//        Toast.makeText(context, title, Toast.LENGTH_LONG).show();
 
 //        Интент запускает главное Активити, при нажатии на уведомление
         Intent resultIntent = new Intent(context, MainActivity.class);
@@ -55,51 +46,28 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) timeStamp,
                 resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        PendingIntent pendingIntentTime = PendingIntent.getActivity(context, (int) onlyTime,
-                resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
 //        Обратимся к ресурсам для удобства
         Resources res = context.getResources();
 
 //        Создаем строитель уведомлений
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        // TODO: 21.01.2016
-        builder.setVisibility(Notification.VISIBILITY_PUBLIC);
         builder.setContentTitle(res.getString(R.string.app_name));//используем название приложения
         builder.setContentText(title);//В тексте ипользуем, пришедший заголовок
-        // TODO: 21.01.2016
-        builder.setTicker(dayName);
-//        ********************************
         builder.setColor(context.getResources().getColor(color));//цвет иконки задачи
         builder.setSmallIcon(R.drawable.ic_check_white_48dp);
 
-//        Указываем что будет использованно от системы по умолчанию
-//        builder.setDefaults(Notification.DEFAULT_ALL);
-        // TODO: 21.01.2016  
-        builder.setDefaults(Notification.DEFAULT_SOUND |
-                Notification.DEFAULT_VIBRATE);
-
+//        Указываем что быдет использованно от системы по умолчанию
+        builder.setDefaults(Notification.DEFAULT_ALL);
 //        В Контент отдаем pendingIntent
-        if (pendingIntent != null) {
-            builder.setContentIntent(pendingIntent);
-        } else {
-            builder.setContentIntent(pendingIntentTime);
-        }
 
-//        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent);
 
 //        Создаем уведомление
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_AUTO_CANCEL;//при нажатии пользователем, флаг удаляется
 
 //        Для информирования о фоновых событиях
-        if (onlyTime != 0) {
-            NotificationManager notificationManagerRepeat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManagerRepeat.notify((int) onlyTime, notification);
-        } else {
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify((int) timeStamp, notification);
-        }
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify((int) timeStamp, notification);
     }
 }

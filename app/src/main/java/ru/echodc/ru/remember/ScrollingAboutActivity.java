@@ -20,9 +20,6 @@ public class ScrollingAboutActivity extends MainActivity implements View.OnClick
     CheckBox checkBoxMax;
     CheckBox checkBoxYarik;
 
-
-//    Bundle args;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +53,10 @@ public class ScrollingAboutActivity extends MainActivity implements View.OnClick
                 if (checkBoxMax.isChecked()) {
                     String recipient = getApplicationContext().getString(R.string.max_email);
                     sendEmail(recipient, subject, body);
-//                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  email MAX");
-//                    startMailDialog(getApplicationContext().getString(R.string.max_email));
 
                 } else if (checkBoxYarik.isChecked()) {
                     String recipient = getApplicationContext().getString(R.string.yarik_email);
                     sendEmail(recipient, subject, body);
-//                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> email Yarik");
-//                    startMailDialog(getApplicationContext().getString(R.string.yarik_email));
 
                 } else {
                     Snackbar.make(view, R.string.select_the_recipient, Snackbar.LENGTH_LONG)
@@ -73,11 +66,6 @@ public class ScrollingAboutActivity extends MainActivity implements View.OnClick
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    //    Стартуем диалог для отправки письма
-//    public void startMailDialog(String email) {
-//        DialogFragment sendMailDialogFragment = SendMailDialogFragment.newInstance(email);
-//        sendMailDialogFragment.show(mFragmentManager, "SendMailDialogFragment");
-//    }
 
     //    При клике по социальным значкам, переходим по адресу
     @Override

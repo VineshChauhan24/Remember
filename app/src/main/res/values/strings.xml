@@ -48,6 +48,7 @@
     <string name="task_adding_cancel">Task adding cancel.</string>
     <string name="moved_to_current">Moved in the current</string>
     <string name="moved_to_done">Moved in the done</string>
+    <string name="toast_forgot_to_choose_a_day">You forgot to choose a day. The days are put automatically</string>
 
     <!-- Banner-->
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8191763105477673/2827062342</string>

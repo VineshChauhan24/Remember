@@ -34,6 +34,10 @@
         <receiver
             android:name=".alarm.AlarmReceiver"
             android:process=":remote" />
+        <receiver
+            android:name=".alarm.AlarmReceiverRepeat"
+            android:process=":remote" />
+
         <!-- Стартуем ресивер после загрузки системы -->
         <receiver android:name=".alarm.AlarmSetter" >
             <intent-filter>

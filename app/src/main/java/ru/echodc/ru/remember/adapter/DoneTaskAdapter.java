@@ -29,7 +29,6 @@ public class DoneTaskAdapter extends TaskAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.model_task, viewGroup, false);
         TextView title = (TextView) v.findViewById(R.id.tvTaskTitle);
@@ -38,7 +37,6 @@ public class DoneTaskAdapter extends TaskAdapter {
         TextView day = (TextView) v.findViewById(R.id.tvDays);
 
         return new TaskViewHolder(v, title, date, priority, day);
-
     }
 
     @Override
@@ -56,11 +54,11 @@ public class DoneTaskAdapter extends TaskAdapter {
             final Resources resources = itemView.getResources();
 
 //            Установим дни недели
-//            **************************************************************************************
             taskViewHolder.day.setText(Utils.getDayName(context, task.getDay()));
-//            **************************************************************************************
+
 //            Установим заголовок через обращение к taskViewHolder
             taskViewHolder.title.setText(task.getTitle());
+
 //            Заполняем поля даты и времени
 //            Если дата и время не установлены, то ничего не пишем
             if (task.getDate() != 0) {
@@ -72,6 +70,7 @@ public class DoneTaskAdapter extends TaskAdapter {
 //                  в уже существующие яцчейки списка, которые уже не видны пользователю
                 taskViewHolder.date.setText(null);
             }
+
             itemView.setVisibility(View.VISIBLE);
 
 //            Добавим возможность нажатия на задачу только один раз
@@ -81,14 +80,17 @@ public class DoneTaskAdapter extends TaskAdapter {
 
 //            Установим цвет по умолчанию для заголовка задачи
             taskViewHolder.title.setTextColor(resources.getColor(R.color.primary_text_disabled_material_light));
+
 //            Установим цвет текста для даты
             taskViewHolder.date.setTextColor(resources.getColor(R.color.secondary_text_disabled_material_light));
+
 //            Установим цвет текста для дней недели
             taskViewHolder.day.setTextColor(resources.getColor(R.color.secondary_text_disabled_material_light));
+
             taskViewHolder.priority.setColorFilter(resources.getColor(task.getPriorityColor()));
+
 //            Установим иконку для пункта списка
             taskViewHolder.priority.setImageResource(R.drawable.ic_check_circle_white_48dp);
-
 
 //            Добавим слушатель на долгое нажатие
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -151,7 +153,7 @@ public class DoneTaskAdapter extends TaskAdapter {
 //                                Перемещаем элемент списка в другую сторону на расстояние равной его длине/ширине
                                 ObjectAnimator translationX = ObjectAnimator.ofFloat(itemView,
                                         View.ROTATION_Y, 0f, -itemView.getWidth());
-//ObjectAnimator translationX = ObjectAnimator.ofFloat(itemView,
+//                              ObjectAnimator translationX = ObjectAnimator.ofFloat(itemView,
 //                                        "translationX", 0f, -itemView.getWidth());
 
 //                                Возвращаем элемент списка в исходное состояние
@@ -207,7 +209,6 @@ public class DoneTaskAdapter extends TaskAdapter {
                         }
                     });
                     flipIn.start();
-
                 }
             });
         }

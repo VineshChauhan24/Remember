@@ -66,7 +66,9 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
         for (int i = 0; i < getItemCount(); i++) {
             if (getItem(i).isTask()) {
                 ModelTask task = (ModelTask) getItem(i);
+                System.out.println("зашло в  getItem(i).isTask() "  );
                 if (newTask.getTimeStamp() == task.getTimeStamp()) {
+                    System.out.println("зашло в  newTask.getTimeStamp() == task.getTimeStamp() "  );
                     removeItem(i);
                     getTaskFragment().addTask(newTask, false);
                 }
@@ -151,9 +153,7 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
         protected TextView title;
         protected TextView date;
         protected CircleImageView priority;
-        //        ******************************************************************************************
         protected TextView day;
-//        ******************************************************************************************
 
         //        Конструктор
         public TaskViewHolder(View itemView, TextView title, TextView date, CircleImageView priority, TextView day) {
@@ -161,9 +161,7 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
             this.title = title;
             this.date = date;
             this.priority = priority;
-//            **************************************************************************************
             this.day = day;
-//            **************************************************************************************
         }
     }
 
@@ -183,5 +181,4 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
     public TaskFragment getTaskFragment() {
         return taskFragment;
     }
-
 }

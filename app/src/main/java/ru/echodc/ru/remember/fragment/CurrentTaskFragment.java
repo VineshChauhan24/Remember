@@ -117,7 +117,7 @@ public class CurrentTaskFragment extends TaskFragment {
         ModelSeparator separator = null;
         checkAdapter();
 
-        //        Для добавления элементов по дате
+//            Для добавления элементов по дате
         for (int i = 0; i < adapter.getItemCount(); i++) {
 //            Если значение нового элемента списка будет больше, чем значение любого элемента
 //            списка, то новый элемент будет добавляться на позицию выше
@@ -141,6 +141,9 @@ public class CurrentTaskFragment extends TaskFragment {
         System.out.println("позишн " + position);
 
 //        Определяем варианты создания разделителей
+
+        System.out.println(adapter.containsSeparatorOverdue + " . " + adapter.containsSeparatorFuture + " . " + adapter.containsSeparatorOverdue + " . " + adapter.containsSeparatorToday
+                + " . " + adapter.containsSeparatorTomorrow + " . " + adapter.containsSeparatorRepeat);
 
         if (newTask.getDate() != 0) {
             Calendar calendar = Calendar.getInstance();
@@ -195,6 +198,10 @@ public class CurrentTaskFragment extends TaskFragment {
             }
         }
 
+
+        System.out.println(adapter.containsSeparatorOverdue + " . " + adapter.containsSeparatorFuture + " . " + adapter.containsSeparatorOverdue + " . " + adapter.containsSeparatorToday
+                + " . " + adapter.containsSeparatorTomorrow + " . " + adapter.containsSeparatorRepeat);
+
 //        Если позиция не равна -1, т.е. ни один элемент из списка не больше нового,
 //          то новый элемент будет добавляться на позицию ниже
         if (position != -1) {
@@ -227,9 +234,8 @@ public class CurrentTaskFragment extends TaskFragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
+
             System.out.println(" этап 5 ");
             adapter.addItem(position, newTask);
         } else {
@@ -249,7 +255,7 @@ public class CurrentTaskFragment extends TaskFragment {
     public void moveTask(ModelTask task) {
 
 //        Удаляем Оповещение
-        alarmHelper.removeAlarm(task.getTimeStamp());
+        alarmHelper.removeAlarm(task.getTimeStamp(), task);
 
 //        Вызываем слушателя на выполненные задачи
         onTaskDoneListener.onTaskDone(task);
