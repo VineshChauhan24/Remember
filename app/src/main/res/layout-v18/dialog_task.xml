@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvDialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_200"
+            android:gravity="center_horizontal"
+            android:padding="16dp"
+            android:text="@string/dialog_title"
+            android:textSize="20sp" />
+        <!-- Underline with this bluish color -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:layout_below="@id/tvDialogTitle"
+            android:background="@color/dialog_title_underline" />
+
+        <RelativeLayout
+            android:id="@+id/relLayoutTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDialogTitle"
+            android:layout_marginBottom="16dp">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilDialogTaskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilDialogTaskDate"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tilDialogTaskTitle"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilDialogTaskTime"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/tilDialogTaskTitle"
+                android:layout_below="@id/tilDialogTaskTitle"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/relLayoutMiddle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relLayoutTop"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:id="@+id/textViewRepeat"
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="16dp"
+                android:layout_toLeftOf="@+id/switchRepeat"
+                android:layout_toStartOf="@+id/switchRepeat"
+                android:text="@string/repeat"
+                android:textSize="16sp"
+                tools:text="@string/repeat" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switchRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textViewRepeat"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:singleLine="true" />
+
+
+            <TableLayout
+                android:id="@+id/tblLayoutDays"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textViewRepeat"
+                android:background="@drawable/dialog_days_border"
+                android:baselineAligned="false"
+                android:measureWithLargestChild="false"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:measureWithLargestChild="false">
+
+
+                    <CheckBox
+                        android:id="@+id/chbMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbTuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbWednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbThursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbSaturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <CheckBox
+                        android:id="@+id/chbSunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-28dp"
+                    android:baselineAligned="false"
+                    android:clickable="false"
+                    android:contextClickable="false"
+                    android:longClickable="false">
+
+                    <TextView
+                        android:id="@+id/tvMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/monday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/monday" />
+
+                    <TextView
+                        android:id="@+id/tvTuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/tuesday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/tuesday" />
+
+                    <TextView
+                        android:id="@+id/tvWednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/wednesday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/wednesday" />
+
+                    <TextView
+                        android:id="@+id/tvThursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/thursday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/thursday" />
+
+                    <TextView
+                        android:id="@+id/tvFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/friday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/friday" />
+
+                    <TextView
+                        android:id="@+id/tvSaturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/saturday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/saturday" />
+
+                    <TextView
+                        android:id="@+id/tvSunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:button="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:foregroundGravity="top"
+                        android:gravity="top"
+                        android:text="@string/sunday"
+                        android:textAlignment="center"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="@string/sunday" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:baselineAligned="false">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilDialogTaskTimeWeekDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3"
+                        android:baselineAligned="false">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:gravity="center"
+                            android:inputType="none"
+                            android:textSize="16sp"
+                            tools:text="@string/new_time" />
+                    </android.support.design.widget.TextInputLayout>
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relLayoutMiddle">
+
+            <Spinner
+                android:id="@+id/spDialogTaskPriority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/AppTheme" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
