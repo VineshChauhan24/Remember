@@ -49,7 +49,8 @@
             android:name=".ScrollingAboutActivity"
             android:label="@string/authors"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.VIEW"></action>-->
                 <!--<data android:scheme="http"></data>-->
